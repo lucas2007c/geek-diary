@@ -3,6 +3,7 @@ import { PORT, HOST } from './config.js'
 import logger from './middlewares/logger.js'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
+import userRouter from './routers/userRouter.js'
 
 const app = express()
 
@@ -16,6 +17,7 @@ app.use(cors({
 app.use(express.json())
 
 //routers
+app.use('/user', userRouter)
 
 app.listen(PORT, () => {
     console.log(`Server running on ${HOST}:${PORT}`)
