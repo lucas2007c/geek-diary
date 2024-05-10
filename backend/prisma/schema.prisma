@@ -6,3 +6,55 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model games {
+  id       Int           @default(autoincrement())
+  name     String        @db.VarChar(200)
+  image    String?       @db.Text
+  notes    String?       @db.VarChar(1000)
+  start    DateTime?     @db.DateTime(0)
+  finish   DateTime?     @db.DateTime(0)
+  platinum DateTime?     @db.DateTime(0)
+  status   games_status?
+  users_id Int
+  users    users         @relation(fields: [users_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_games_users")
+
+  @@id([id, users_id])
+  @@index([users_id], map: "fk_games_users_idx")
+}
+
+model series {
+  id       Int            @default(autoincrement())
+  name     String         @db.VarChar(200)
+  image    String?        @db.Text
+  notes    String?        @db.VarChar(1000)
+  start    DateTime?      @db.DateTime(0)
+  finish   DateTime?      @db.DateTime(0)
+  last_ep  String?        @db.VarChar(50)
+  status   series_status?
+  users_id Int
+  users    users          @relation(fields: [users_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_series_users1")
+
+  @@id([id, users_id])
+  @@index([users_id], map: "fk_series_users1_idx")
+}
+
+model users {
+  id     Int      @id @default(autoincrement())
+  email  String   @db.VarChar(200)
+  pass   String   @db.Text
+  games  games[]
+  series series[]
+}
+
+enum games_status {
+  Jogando
+  Zerado
+  Platinado
+}
+
+enum series_status {
+  Assistindo
+  Finalizado
+  Assistir_mais_tarde @map("Assistir mais tarde")
+}
