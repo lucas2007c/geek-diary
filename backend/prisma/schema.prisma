@@ -17,7 +17,7 @@ model games {
   platinum DateTime?     @db.DateTime(0)
   status   games_status?
   users_id Int
-  users    users         @relation(fields: [users_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_games_users")
+  users    users         @relation(fields: [users_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_games_users")
 
   @@id([id, users_id])
   @@index([users_id], map: "fk_games_users_idx")
@@ -33,7 +33,7 @@ model series {
   last_ep  String?        @db.VarChar(50)
   status   series_status?
   users_id Int
-  users    users          @relation(fields: [users_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_series_users1")
+  users    users          @relation(fields: [users_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_series_users1")
 
   @@id([id, users_id])
   @@index([users_id], map: "fk_series_users1_idx")
