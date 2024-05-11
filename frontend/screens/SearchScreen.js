@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet } from "react-native"
 
-const SeriesScreen = () => {
+const SearchScreen = () => {
     return (
         <View style={styles.container}>
-            <Text style={{ color: '#fff' }}>Series</Text>
+            <Text style={{ color: '#fff' }}>Search</Text>
         </View>
     )
 }
@@ -18,4 +18,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default SeriesScreen
+export default SearchScreen
