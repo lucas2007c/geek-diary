@@ -3,7 +3,8 @@
   "type": "module",
   "scripts": {
     "start": "node --env-file=.env src/server.js",
-    "dev": "node --watch --env-file=.env src/server.js"
+    "dev": "node --watch --env-file=.env src/server.js",
+    "initials": "npm i && npx prisma db push && npx prisma generate"
   },
   "devDependencies": {
     "prisma": "^5.10.2"
