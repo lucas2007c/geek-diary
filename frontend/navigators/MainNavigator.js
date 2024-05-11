@@ -12,12 +12,14 @@ const MainNavigator = () => {
         <Tab.Navigator screenOptions={{
             tabBarIndicatorStyle: {
                 backgroundColor: '#0296E5'
-            }
+            },
+            tabBarActiveTintColor: '#0296E5',
+            tabBarInactiveTintColor: '#fff'
         }}>
             <Tab.Screen name="jogos" component={GamesScreen} options={{
                 tabBarLabel: 'Jogos',
                 tabBarStyle: styles.mainTab,
-                tabBarLabelStyle: styles.tabLabel,
+                tabBarLabelStyle: styles.tabLabel
             }} />
             <Tab.Screen name="series" component={SeriesScreen} options={{
                 tabBarLabel: 'Séries',
@@ -34,7 +36,8 @@ const styles = StyleSheet.create({
         paddingTop: 40,
     },
     tabLabel: {
-        color: '#fff'
+        textTransform: 'none',
+        fontSize: 17
     }
 })
 
