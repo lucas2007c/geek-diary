@@ -9,14 +9,14 @@ import serieRouter from './routers/serieRouter.js'
 
 const app = express()
 
-app.use(logger)
+app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
     origin: ['http://localhost:3000'],
     methods: ['GET', 'PUT', 'POST', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }))
-app.use(express.json())
+app.use(logger)
 
 //routers
 app.use('/user', userRouter)
