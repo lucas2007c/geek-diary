@@ -3,11 +3,13 @@ import userModel from "../../models/userModel.js";
 const remove = async (req, res) => {
     try {
         const { id } = req.params
-        const user = await userModel.remove(+id)
 
-        if (!user) {
-            res.status(404).json({ msg: 'Usuário não encontrado' })
+        const userFound = await userModel.getById(+id)
+        if (!userFound) {
+            return res.status(404).json({ msg: 'Usuário não encontrado' })
         }
+
+        const user = await userModel.remove(+id)
 
         res.json({ msg: `Usuário ${id} deletado com sucesso!`, user })
     } catch (error) {

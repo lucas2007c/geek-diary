@@ -32,6 +32,7 @@ describe('/GET user', () => {
 
     afterAll(async () => {
         await request(app).delete(`/user/${newUser.id}`)
+        await prisma.$executeRaw`ALTER TABLE users AUTO_INCREMENT = 1;`
     })
 
     it('Deve retornar 200 e o usuário', async () => {
@@ -40,11 +41,18 @@ describe('/GET user', () => {
         expect(response.body.user).toEqual(newUser)
         // to equal é usado para comparar objetos e arrays diferentes
     })
+
+    it('Deve retornar 404 e Usuário não encontrado', async () => {
+        const response = await request(app).get(`/user/99999999`);
+        expect(response.statusCode).toBe(404)
+        expect(response.body.msg).toBe('Usuário não encontrado')
+    })
 });
 
 describe('/POST user', () => {
     afterAll(async () => {
         await request(app).delete(`/user/${newUser.id}`)
+        await prisma.$executeRaw`ALTER TABLE users AUTO_INCREMENT = 1;`
     })
 
     it('Deve retornar 201 e o user criado', async () => {
@@ -66,13 +74,19 @@ describe('/PUT user', () => {
 
     afterAll(async () => {
         await request(app).delete(`/user/${newUser.id}`)
+        await prisma.$executeRaw`ALTER TABLE users AUTO_INCREMENT = 1;`
     })
 
     it('Deve retornar 200 e usuário atualizado', async () => {
         const response = await request(app).put(`/user/${newUser.id}`).send(newData)
-        console.log(response.body);
         expect(response.body.user).toEqual({ id: newUser.id, ...newData })
         expect(response.statusCode).toBe(200)
+    })
+
+    it('Deve retornar 404 e Usuário não encontrado', async () => {
+        const response = await request(app).put(`/user/99999999`);
+        expect(response.statusCode).toBe(404)
+        expect(response.body.msg).toBe('Usuário não encontrado')
     })
 })
 
@@ -81,10 +95,19 @@ describe('/DELETE user', () => {
         await request(app).post('/user').send(newUser)
     })
 
+    afterAll(async () => {
+        await prisma.$executeRaw`ALTER TABLE users AUTO_INCREMENT = 1;`
+    })
+
     it('Deve retornar 200 e o usuário deletado', async () => {
         const response = await request(app).delete(`/user/${newUser.id}`)
         expect(response.body.user).toEqual(newUser)
         expect(response.statusCode).toBe(200)
     })
 
+    it('Deve retornar 404 e Usuário não encontrado', async () => {
+        const response = await request(app).delete(`/user/99999999`);
+        expect(response.statusCode).toBe(404)
+        expect(response.body.msg).toBe('Usuário não encontrado')
+    })
 })
