@@ -12,12 +12,12 @@ const userSchema = z.object({
         invalid_type_error: 'O email deve ser uma string'
     })
         .email('Email inválido')
-        .max('O email deve ter no máximo 200 caracteres'),
+        .max(200, 'O email deve ter no máximo 200 caracteres'),
     pass: z.string({
         required_error: 'A senha é obrigatória',
         invalid_type_error: 'A senha deve ser uma string'
     })
-        .min('A senha deve ter no mínimo 6 caracteres'),
+        .min(6, 'A senha deve ter no mínimo 6 caracteres'),
 })
 
 const validateUserToCreate = (user) => {
