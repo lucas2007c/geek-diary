@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser'
 import userRouter from './routers/userRouter.js'
 import gameRouter from './routers/gameRouter.js'
 import serieRouter from './routers/serieRouter.js'
+import prismaDateFormat from './middlewares/prismaDateFormat.js'
 
 const app = express()
 
@@ -17,6 +18,7 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization']
 }))
 app.use(logger)
+app.use(prismaDateFormat)
 
 //routers
 app.use('/user', userRouter)
