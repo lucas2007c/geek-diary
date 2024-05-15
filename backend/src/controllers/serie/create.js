@@ -1,5 +1,6 @@
 import serieModel from "../../models/serieModel.js";
 import zodErrorFormat from "../../helpers/zodErrorFormat.js";
+import dateFormat from "../../helpers/dateFormat.js";
 
 const create = async (req, res) => {
     try {
@@ -11,7 +12,7 @@ const create = async (req, res) => {
         }
 
         const serie = await serieModel.create(data)
-        res.status(201).json({ msg: `Série cadastrada com sucesso!`, serie })
+        res.status(201).json({ msg: `Série cadastrada com sucesso!`, serie: dateFormat(serie) })
     } catch (error) {
         console.log(error);
         return res.status(500).json({ error: 'Opsss erro no servidor, tente novamente!' })
