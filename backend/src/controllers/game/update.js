@@ -18,7 +18,7 @@ const update = async (req, res) => {
         }
 
         const game = await gameModel.update(+id, +userID, data)
-        res.json({ msg: `Jogo ${id} atualizado com sucesso!`, game })
+        res.json({ msg: `Jogo ${id} atualizado com sucesso!`, game: dateFormat(game) })
     } catch (error) {
         console.log(error);
         return res.status(500).json({ error: 'Opsss erro no servidor, tente novamente!' })

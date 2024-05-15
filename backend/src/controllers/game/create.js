@@ -1,5 +1,6 @@
 import gameModel from "../../models/gameModel.js";
 import zodErrorFormat from "../../helpers/zodErrorFormat.js";
+import dateFormat from "../../helpers/dateFormat.js";
 
 const create = async (req, res) => {
     try {
@@ -11,7 +12,7 @@ const create = async (req, res) => {
         }
 
         const game = await gameModel.create(data)
-        res.status(201).json({ msg: `Jogo cadastrado com sucesso!`, game })
+        res.status(201).json({ msg: `Jogo cadastrado com sucesso!`, game: dateFormat(game) })
     } catch (error) {
         console.log(error);
         return res.status(500).json({ error: 'Opsss erro no servidor, tente novamente!' })

@@ -11,7 +11,7 @@ const remove = async (req, res) => {
 
         const game = await gameModel.remove(+id, +userID)
 
-        res.json({ msg: `Jogo ${id} deletado com sucesso!`, game })
+        res.json({ msg: `Jogo ${id} deletado com sucesso!`, game: dateFormat(game) })
     } catch (error) {
         console.log(error);
         return res.status(500).json({ error: 'Opsss erro no servidor, tente novamente!' })

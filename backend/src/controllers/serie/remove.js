@@ -1,3 +1,4 @@
+import dateFormat from "../../helpers/dateFormat.js";
 import serieModel from "../../models/serieModel.js";
 
 const remove = async (req, res) => {
@@ -11,7 +12,7 @@ const remove = async (req, res) => {
 
         const serie = await serieModel.remove(+id, +userID)
 
-        res.json({ msg: `Série ${id} deletada com sucesso!`, serie })
+        res.json({ msg: `Série ${id} deletada com sucesso!`, serie: dateFormat(serie) })
     } catch (error) {
         console.log(error);
         return res.status(500).json({ error: 'Opsss erro no servidor, tente novamente!' })
