@@ -1,4 +1,5 @@
 import gameModel from "../../models/gameModel.js";
+import zodErrorFormat from "../../helpers/zodErrorFormat.js";
 
 const update = async (req, res) => {
     try {
@@ -10,6 +11,12 @@ const update = async (req, res) => {
         }
 
         const data = req.body
+
+        const result = gameModel.validateGameToCreate(data)
+        if (!result.success) {
+            return res.status(400).json({ error: 'Dados de atualização inválidos', fields: zodErrorFormat(result.error) })
+        }
+
         const game = await gameModel.update(+id, +userID, data)
         res.json({ msg: `Jogo ${id} atualizado com sucesso!`, game })
     } catch (error) {

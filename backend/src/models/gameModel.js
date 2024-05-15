@@ -2,6 +2,39 @@ import { PrismaClient } from '@prisma/client'
 import { z } from 'zod'
 const prisma = new PrismaClient();
 
+const gameSchema = z.object({
+    id: z.number({
+        required_error: 'o id é obrigatório',
+        invalid_type_error: 'O id deve ser um número'
+    }),
+    name: z.string({
+        required_error: 'O nome é obrigatório',
+        invalid_type_error: 'O nome deve ser uma string'
+    })
+        .max(200, 'O nome deve ter no máximo 200 caracteres'),
+    image: z.string({
+        invalid_type_error: 'A imagem deve ser uma string'
+    })
+        .url('Url da imagem inválida'),
+    notes: z.string({
+        invalid_type_error: 'As notas devem ser uma string'
+    })
+        .max(1000, 'As anotações devem ter no máximo 1000 caracteres'),
+    status: z.string({
+        invalid_type_error: 'O ultimp ep deve ser uma string'
+    })
+})
+
+const validateGameToCreate = (game) => {
+    const partialGameSchema = gameSchema.partial({ id: true, image: true, notes: true, status: true })
+    return partialGameSchema.safeParse(game)
+}
+
+const validateGameToUpdate = (game) => {
+    const partialGameSchema = gameSchema.partial({ id: true, name: true, image: true, notes: true, status: true })
+    return partialGameSchema.safeParse(game)
+}
+
 const getAll = async () => {
     return await prisma.games.findMany({
         orderBy: { id: 'asc' }
@@ -48,4 +81,4 @@ const remove = async (id, users_id) => {
     })
 }
 
-export default { getAll, getById, create, update, remove }
+export default { getAll, getById, create, update, remove, validateGameToCreate, validateGameToUpdate }
