@@ -16,8 +16,10 @@ import listAllUser from '../src/controllers/user/listAll.js';
 import createUser from '../src/controllers/user/create.js';
 import updateUser from '../src/controllers/user/update.js';
 import removeUser from '../src/controllers/user/remove.js';
+import prismaDateFormat from '../src/middlewares/prismaDateFormat.js';
 
 app.use(express.json());
+app.use(prismaDateFormat)
 
 app.get('/serie', listAll);
 app.get('/serie/:id/:userID', getById);
@@ -42,8 +44,8 @@ const newSerie = {
     name: 'Jujutsu kaisen',
     image: 'http://image.url',
     notes: 'No ep x gojo derrotou hanami',
-    start: '2024-05-15T00:00:00.000Z',
-    finish: '2024-05-15T00:00:00.000Z',
+    start: '15/05/2024',
+    finish: '15/05/2024',
     last_ep: 'T2 E40 - Trovão',
     status: 'Assistindo',
     users_id: newUser.id,
@@ -101,8 +103,8 @@ describe('/PUT serie', () => {
         name: 'Jujutsu kaisen',
         image: 'http://image.url',
         notes: 'No ep x gojo derrotou hanami',
-        start: '2024-05-15T00:00:00.000Z',
-        finish: '2024-05-15T00:00:00.000Z',
+        start: '15/05/2024',
+        finish: '15/05/2024',
         last_ep: 'T2 E42 - Certo e errado',
         status: 'Assistindo',
         users_id: newUser.id,

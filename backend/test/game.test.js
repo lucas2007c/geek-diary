@@ -16,8 +16,10 @@ import listAllUser from '../src/controllers/user/listAll.js';
 import createUser from '../src/controllers/user/create.js';
 import updateUser from '../src/controllers/user/update.js';
 import removeUser from '../src/controllers/user/remove.js';
+import prismaDateFormat from '../src/middlewares/prismaDateFormat.js';
 
 app.use(express.json());
+app.use(prismaDateFormat)
 
 app.get('/game', listAll);
 app.get('/game/:id/:userID', getById);
@@ -42,9 +44,9 @@ const newGame = {
     name: 'God of war',
     image: 'http://image.url',
     notes: 'Cabeça da medusa é boa contra os minotauros',
-    start: '2024-05-15T00:00:00.000Z',
-    finish: '2024-05-15T00:00:00.000Z',
-    platinum: '2024-05-15T00:00:00.000Z',
+    start: '15/05/2024',
+    finish: '15/05/2024',
+    platinum: '15/05/2024',
     status: 'Platinado',
     users_id: newUser.id,
 }
@@ -101,9 +103,9 @@ describe('/PUT game', () => {
         name: 'God of war',
         image: 'http://image.url2',
         notes: 'Cabeça da medusa é boa contra os minotauros e ogros',
-        start: '2024-05-15T00:00:00.000Z',
-        finish: '2024-05-15T00:00:00.000Z',
-        platinum: '2024-05-15T00:00:00.000Z',
+        start: '15/05/2024',
+        finish: '15/05/2024',
+        platinum: '15/05/2024',
         status: 'Platinado',
         users_id: newUser.id,
     }
