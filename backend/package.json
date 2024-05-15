@@ -5,7 +5,7 @@
     "start": "node --env-file=.env src/server.js",
     "dev": "node --watch --env-file=.env src/server.js",
     "initials": "npm i && npx prisma db push && npx prisma generate",
-    "test": "jest"
+    "test": "jest -i"
   },
   "devDependencies": {
     "@babel/core": "^7.24.5",
