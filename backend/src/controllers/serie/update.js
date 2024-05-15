@@ -10,6 +10,12 @@ const update = async (req, res) => {
         }
 
         const data = req.body
+
+        const result = serieModel.validateSerieToUpdate(data)
+        if (!result.success) {
+            return res.status(400).json({ error: 'Dados de atualização inválidos', fields: zodErrorFormat(result.error) })
+        }
+
         const serie = await serieModel.update(+id, +userID, data)
         res.json({ msg: `Série ${id} atualizada com sucesso!`, serie })
     } catch (error) {
