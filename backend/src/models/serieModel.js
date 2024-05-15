@@ -30,12 +30,12 @@ const serieSchema = z.object({
 })
 
 const validateSerieToCreate = (serie) => {
-    const partialSerieSchema = serieSchema.partial({ id: true, image: true, notes: true, start: true, finish: true, last_ep: true, status: true })
+    const partialSerieSchema = serieSchema.partial({ id: true, image: true, notes: true, last_ep: true, status: true })
     return partialSerieSchema.safeParse(serie)
 }
 
 const validateSerieToUpdate = (serie) => {
-    const partialSerieSchema = serieSchema.partial({ id: true, name: true, image: true, notes: true, start: true, finish: true, last_ep: true, status: true })
+    const partialSerieSchema = serieSchema.partial({ id: true, name: true, image: true, notes: true, last_ep: true, status: true })
     return partialSerieSchema.safeParse(serie)
 }
 
