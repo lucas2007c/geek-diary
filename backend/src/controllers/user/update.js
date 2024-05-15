@@ -14,7 +14,7 @@ const update = async (req, res) => {
 
         const result = userModel.validateUserToUpdate(data)
         if (!result.success) {
-            return res.status(400).json({ error: 'Dados de cadastro inválidos', fields: zodErrorFormat(result.error) })
+            return res.status(400).json({ error: 'Dados de atualização inválidos', fields: zodErrorFormat(result.error) })
         }
 
         const user = await userModel.update(+id, data)
