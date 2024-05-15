@@ -1,4 +1,5 @@
 import userModel from "../../models/userModel.js";
+import zodErrorFormat from "../../helpers/zodErrorFormat.js";
 
 const update = async (req, res) => {
     try {
@@ -10,6 +11,12 @@ const update = async (req, res) => {
         }
 
         const data = req.body
+
+        const result = userModel.validateUserToUpdate(data)
+        if (!result.success) {
+            return res.status(400).json({ error: 'Dados de cadastro inválidos', fields: zodErrorFormat(result.error) })
+        }
+
         const user = await userModel.update(+id, data)
         res.json({ msg: `Usuário ${id} atualizado com sucesso!`, user })
     } catch (error) {
