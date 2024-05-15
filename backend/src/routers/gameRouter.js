@@ -9,9 +9,9 @@ import remove from '../controllers/game/remove.js';
 const router = express.Router();
 
 router.get('/', listAll);
-router.get('/:id', getById);
+router.get('/:id/:userID', getById);
 router.post('/', create);
-router.put('/:id', update);
-router.delete('/:id', remove);
+router.put('/:id/:userID', update);
+router.delete('/:id/:userID', remove);
 
 export default router;

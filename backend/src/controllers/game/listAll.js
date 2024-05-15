@@ -1,7 +1,9 @@
+import gameModel from "../../models/gameModel.js";
 
 const listAll = async (req, res) => {
     try {
-        res.json({ msg: `GAMES LIST ALL` })
+        const games = await gameModel.getAll()
+        return res.json({ msg: 'Jogos listados com sucesso!', games })
     } catch (error) {
         console.log(error);
         return res.status(500).json({ error: 'Opsss erro no servidor, tente novamente!' })
