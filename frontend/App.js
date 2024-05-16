@@ -17,6 +17,8 @@ export default function App() {
         tabBarStyle: {
           backgroundColor: '#242A32',
           borderColor: '#0296E5',
+          height: 60,
+          padding: 5
         },
         tabBarActiveTintColor: '#0296E5',
         tabBarInactiveTintColor: '#67686D',
