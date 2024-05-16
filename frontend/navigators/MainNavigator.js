@@ -2,6 +2,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import GamesScreen from '../screens/GamesScreen';
 import SeriesScreen from '../screens/SeriesScreen'
 import { StyleSheet } from 'react-native';
+import GameNavigator from './GameNavigator';
 
 
 
@@ -16,7 +17,7 @@ const MainNavigator = () => {
             tabBarActiveTintColor: '#0296E5',
             tabBarInactiveTintColor: '#fff'
         }}>
-            <Tab.Screen name="jogos" component={GamesScreen} options={{
+            <Tab.Screen name="jogos" component={GameNavigator} options={{
                 tabBarLabel: 'Jogos',
                 tabBarStyle: styles.mainTab,
                 tabBarLabelStyle: styles.tabLabel

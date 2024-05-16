@@ -4,9 +4,11 @@ import H1 from "../components/ui/H1"
 import axios from "axios"
 import CardGame from "../components/CardGame"
 import Button from "../components/ui/Button"
+import { useNavigation } from "@react-navigation/native"
 
 const GamesScreen = () => {
     const [games, setGames] = useState([])
+    const navigation = useNavigation()
 
     const getGames = async () => {
         try {
@@ -30,7 +32,7 @@ const GamesScreen = () => {
         <ScrollView style={styles.container}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <H1>Todos Os Jogos</H1>
-                <Button title='Novo' style={{ marginRight: 50 }} />
+                <Button title='Novo' style={{ marginRight: 50 }} onPress={() => navigation.navigate('jogocadastro')} />
             </View>
             <FlatList
                 data={games}
