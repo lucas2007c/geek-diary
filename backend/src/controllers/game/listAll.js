@@ -1,4 +1,5 @@
 import gameModel from "../../models/gameModel.js";
+import dateFormatArray from '../../helpers/dateFormatArray.js'
 
 const listAll = async (req, res) => {
     try {
