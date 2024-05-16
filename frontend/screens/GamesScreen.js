@@ -22,6 +22,10 @@ const GamesScreen = () => {
         getGames()
     }, [])
 
+    const jogando = games.filter((game) => game.status === 'Jogando')
+    const zerados = games.filter((game) => game.status === 'Zerado')
+    const platinados = games.filter((game) => game.status === 'Platinado')
+
     return (
         <ScrollView style={styles.container}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -36,13 +40,28 @@ const GamesScreen = () => {
             />
 
             <H1>Jogando</H1>
-            <CardGame game={{ image: 'https://upload.wikimedia.org/wikipedia/pt/5/5d/Batman_Arkham_Knight_Capa.jpg?20140331090505' }} />
+            <FlatList
+                data={jogando}
+                renderItem={({ item }) => <CardGame game={item} />}
+                keyExtractor={item => item.id}
+                horizontal={true}
+            />
 
             <H1>Zerados</H1>
-            <CardGame game={{ image: 'https://image.api.playstation.com/vulcan/img/rnd/202010/2217/p3pYq0QxntZQREXRVdAzmn1w.png' }} />
+            <FlatList
+                data={zerados}
+                renderItem={({ item }) => <CardGame game={item} />}
+                keyExtractor={item => item.id}
+                horizontal={true}
+            />
 
             <H1>Platinados</H1>
-            <CardGame game={{ image: 'https://image.api.playstation.com/cdn/UP1004/CUSA03041_00/Hpl5MtwQgOVF9vJqlfui6SDB5Jl4oBSq.png' }} />
+            <FlatList
+                data={platinados}
+                renderItem={({ item }) => <CardGame game={item} />}
+                keyExtractor={item => item.id}
+                horizontal={true}
+            />
         </ScrollView>
     )
 }
