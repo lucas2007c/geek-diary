@@ -76,6 +76,16 @@ CREATE TABLE IF NOT EXISTS `projeto-native-games`.`series` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
+-- Inserir um usuário
+INSERT INTO `users` (`email`, `pass`) VALUES ('user@gmail.com', '123456');
+
+-- Inserir jogos
+INSERT INTO `games` (`id`, `name`, `image`, `notes`, `start`, `finish`, `platinum`, `status`, `users_id`) VALUES
+(107, 'Batman Arkham knight', 'https://upload.wikimedia.org/wikipedia/pt/5/5d/Batman_Arkham_Knight_Capa.jpg?20140331090505', '', '2024-05-15', NULL, NULL, 'Platinado', 1),
+(108, 'God of war 2018', 'https://image.api.playstation.com/vulcan/img/rnd/202010/2217/p3pYq0QxntZQREXRVdAzmn1w.png', '', '2024-05-15', NULL, NULL, 'Zerado', 1),
+(109, 'Read dead redemption 2', 'https://image.api.playstation.com/cdn/UP1004/CUSA03041_00/Hpl5MtwQgOVF9vJqlfui6SDB5Jl4oBSq.png', '', '2024-05-15', NULL, NULL, 'Jogando', 1),
+(110, 'Aragami', 'https://image.api.playstation.com/cdn/UP1578/CUSA06168_00/aZ1WOSfMw9fsv4Y5KbT9ikS1THYP3egi.png', '', '2024-05-16', '2024-05-18', '2024-05-21', 'Platinado', 1),
+(111, 'Spider man remaster', 'https://image.api.playstation.com/vulcan/ap/rnd/202009/3021/B2aUYFC0qUAkNnjbTHRyhrg3.png', '', '2024-05-16', '2024-05-30', '2024-06-12', 'Platinado', 1);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
