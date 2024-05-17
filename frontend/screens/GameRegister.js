@@ -2,6 +2,9 @@ import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native"
 import H1 from '../components/ui/H1.js'
 import { COLORS } from "../constants/constants"
 import { useState } from "react"
+import Button from "../components/ui/Button.js"
+import axios from "axios"
+import { useNavigation } from "@react-navigation/native"
 
 const GameRegister = () => {
     const [txtName, setTxtName] = useState('')
@@ -9,6 +12,34 @@ const GameRegister = () => {
     const [txtStart, setTxtStart] = useState('')
     const [txtStatus, setTxtStatus] = useState('')
     const [txtNotes, setTxtNotes] = useState('')
+
+    const navigation = useNavigation()
+
+    const postGame = async () => {
+        const newGame = {
+            name: txtName,
+            image: txtUrl !== '' ? txtUrl : undefined,
+            notes: txtNotes !== '' ? txtNotes : undefined,
+            start: txtStart !== '' ? txtStart : undefined,
+            status: txtStatus !== '' ? txtStatus : undefined,
+            users_id: 1,
+        }
+        try {
+            const response = await axios.post('http://localhost:3000/game', newGame)
+            navigation.navigate('jogoslist')
+        } catch (error) {
+            let fieldsErros = ''
+            if (error?.response?.data?.fields) {
+                for (let field in error.response.data.fields) {
+                    fieldsErros += field[0] + '\n'
+                }
+                fieldsErros = error?.response?.data?.fields?.image
+            }
+
+            alert(`${error.response.data.msg} \n` + fieldsErros);
+            console.log(error.response.data);
+        }
+    }
 
     return (
         <ScrollView style={styles.container}>
@@ -55,13 +86,17 @@ const GameRegister = () => {
             <View style={styles.field}>
                 <H1 style={styles.label}>Anotações {txtNotes.length}/1000</H1>
                 <TextInput
-                    style={[styles.txtinput, { height: 500, color: '#fff', fontSize: 20 }]}
+                    style={[styles.txtinput, { height: 500, color: '#fff', fontSize: 20, textAlignVertical: 'top' }]}
                     placeholder="Anote o que quiser..."
                     placeholderTextColor={COLORS.secondary}
                     multiline
                     value={txtNotes}
                     onChangeText={setTxtNotes}
                 />
+            </View>
+
+            <View style={styles.field}>
+                <Button title='Cadastrar' onPress={postGame} />
             </View>
         </ScrollView>
     )
