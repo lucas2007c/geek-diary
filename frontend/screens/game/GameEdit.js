@@ -1,15 +1,135 @@
-import { View, Text, StyleSheet } from "react-native"
+import { View, TextInput, StyleSheet, ScrollView } from "react-native"
 import { COLORS } from "../../constants/constants"
 import { useNavigation, useRoute } from '@react-navigation/native';
+import useGameStore from '../../stores/gameStore.js'
+import { useState } from "react";
+import H1 from '../../components/ui/H1.js'
+import Button from '../../components/ui/Button.js'
+import { Image } from 'expo-image'
+import axios from "axios";
 
 const GameEdit = () => {
+    const updateGame = useGameStore(state => state.updateGame)
     const navigation = useNavigation()
     const route = useRoute()
     const game = route.params
+
+    const [txtName, setTxtName] = useState(game.name)
+    const [txtUrl, setTxtUrl] = useState(!game.image ? '' : game.image)
+    const [txtStart, setTxtStart] = useState(!game.start ? '' : game.start)
+    const [txtFinish, setTxtFinish] = useState(!game.finish ? '' : game.finish)
+    const [txtPlatinum, setTxtPlatinum] = useState(!game.platinum ? '' : game.platinum)
+    const [txtStatus, setTxtStatus] = useState(!game.status ? '' : game.status)
+    const [txtNotes, setTxtNotes] = useState(!game.notes ? '' : game.notes)
+
+    const putGame = async () => {
+        const newGame = {
+            name: txtName,
+            image: txtUrl !== '' ? txtUrl : undefined,
+            notes: txtNotes,
+            start: txtStart !== '' ? txtStart : undefined,
+            finish: txtFinish !== '' ? txtFinish : undefined,
+            platinum: txtPlatinum !== '' ? txtPlatinum : undefined,
+            status: txtStatus !== '' ? txtStatus : undefined,
+            users_id: 1,
+        }
+
+        try {
+            const response = await axios.put(`http://localhost:3000/game/${game.id}/${game.users_id}`, newGame)
+            updateGame(game.id, game.users_id, response.data.game,)
+            navigation.navigate('jogoslist')
+        } catch (error) {
+            let fieldsErros = ''
+            if (error?.response?.data?.fields) {
+                for (let field in error.response.data.fields) {
+                    fieldsErros += field[0] + '\n'
+                }
+                fieldsErros = error?.response?.data?.fields?.image
+            }
+
+            alert(`${error.response.data.msg} \n` + fieldsErros);
+            console.log(error.response.data);
+        }
+    }
+
     return (
-        <View style={styles.container}>
-            <Text style={{ color: '#fff' }}>{game.name}</Text>
-        </View>
+        <ScrollView style={styles.container}>
+
+            <TextInput
+                placeholder="Nome..."
+                placeholderTextColor={COLORS.secondary}
+                style={[styles.txtinput, styles.title]}
+                value={txtName}
+                onChangeText={setTxtName}
+            />
+
+            <View style={styles.field}>
+                <Image source={game.image} style={styles.gameImage} contentFit="contain" />
+            </View>
+
+            <View style={styles.field}>
+                <H1 style={styles.label}>Url da capa</H1>
+                <TextInput
+                    placeholder="Insira sua url..."
+                    placeholderTextColor={COLORS.secondary}
+                    style={styles.txtinput}
+                    value={txtUrl}
+                    onChangeText={setTxtUrl}
+                />
+            </View>
+
+            <View style={styles.field}>
+                <H1 style={styles.label}>ínicio</H1>
+                <TextInput
+                    style={styles.txtinput}
+                    value={txtStart}
+                    onChangeText={setTxtStart}
+                />
+            </View>
+
+            <View style={styles.field}>
+                <H1 style={styles.label}>Zerado</H1>
+                <TextInput
+                    style={styles.txtinput}
+                    value={txtFinish}
+                    onChangeText={setTxtFinish}
+                />
+            </View>
+
+            <View style={styles.field}>
+                <H1 style={styles.label}>Platinado</H1>
+                <TextInput
+                    style={styles.txtinput}
+                    value={txtPlatinum}
+                    onChangeText={setTxtPlatinum}
+                />
+            </View>
+
+            <View style={styles.field}>
+                <H1 style={styles.label}>Status</H1>
+                <TextInput
+                    style={styles.txtinput}
+                    value={txtStatus}
+                    onChangeText={setTxtStatus}
+                />
+            </View>
+
+            <View style={styles.field}>
+                <H1 style={styles.label}>Anotações {!txtNotes?.length ? 0 : txtNotes.length}/1000</H1>
+                <TextInput
+                    style={[styles.txtinput, { height: 500, color: '#fff', fontSize: 20, AlignVertical: 'top' }]}
+                    placeholder="Anote o que quiser..."
+                    placeholderTextColor={COLORS.secondary}
+                    multiline
+                    value={txtNotes}
+                    onChangeText={setTxtNotes}
+                />
+            </View>
+
+            <View style={styles.field}>
+                <Button title='Editar' onPress={putGame} />
+            </View>
+        </ScrollView>
     )
 }
 
@@ -17,9 +137,30 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLORS.background,
-        padding: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
+        paddingHorizontal: 25
+    },
+    title: {
+        textAlign: 'center',
+        fontSize: 25,
+        backgroundColor: COLORS.background
+    },
+    label: {
+        fontSize: 20,
+        marginBottom: 5
+    },
+    txtinput: {
+        backgroundColor: '#00334E',
+        color: '#fff',
+        borderRadius: 3,
+        padding: 5,
+        fontSize: 17
+    },
+    field: {
+        marginVertical: 10
+    },
+    gameImage: {
+        width: '100%',
+        height: 200
     }
 })
 

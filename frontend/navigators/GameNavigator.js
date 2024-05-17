@@ -38,8 +38,6 @@ const GameNavigator = () => {
 const styles = StyleSheet.create({
     mainTab: {
         backgroundColor: COLORS.background,
-        paddingTop: 40,
-        textAlign: 'center',
     },
     tabLabel: {
         color: '#fff',

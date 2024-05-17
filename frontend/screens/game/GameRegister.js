@@ -90,7 +90,7 @@ const GameRegister = () => {
             <View style={styles.field}>
                 <H1 style={styles.label}>Anotações {txtNotes.length}/1000</H1>
                 <TextInput
-                    style={[styles.txtinput, { height: 500, color: '#fff', fontSize: 20, textAlignVertical: 'top' }]}
+                    style={[styles.txtinput, { height: 500, color: '#fff', fontSize: 20, AlignVertical: 'top' }]}
                     placeholder="Anote o que quiser..."
                     placeholderTextColor={COLORS.secondary}
                     multiline
