@@ -37,7 +37,7 @@ const GamesScreen = () => {
             <ImageBackground source={imageUrl} style={{ paddingTop: 15, paddingLeft: 20 }} contentFit='fill'>
 
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <H1>Todos Os Jogos</H1>
+                    <H1>Todos Os Jogos ({games.length})</H1>
                     <Button title='Novo' style={{ marginRight: 50 }} onPress={() => navigation.navigate('jogocadastro')} />
                 </View>
                 <FlatList
@@ -47,7 +47,7 @@ const GamesScreen = () => {
                     horizontal={true}
                 />
 
-                <H1>Jogando</H1>
+                <H1>Jogando ({jogando.length})</H1>
                 <FlatList
                     data={jogando}
                     renderItem={({ item }) => <CardGame game={item} />}
@@ -55,7 +55,7 @@ const GamesScreen = () => {
                     horizontal={true}
                 />
 
-                <H1>Zerados</H1>
+                <H1>Zerados ({zerados.length})</H1>
                 <FlatList
                     data={zerados}
                     renderItem={({ item }) => <CardGame game={item} />}
@@ -63,7 +63,7 @@ const GamesScreen = () => {
                     horizontal={true}
                 />
 
-                <H1>Platinados</H1>
+                <H1>Platinados ({platinados.length})</H1>
                 <FlatList
                     data={platinados}
                     renderItem={({ item }) => <CardGame game={item} />}
