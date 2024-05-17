@@ -30,9 +30,11 @@ const GamesScreen = () => {
     const zerados = games.filter((game) => game.status === 'Zerado')
     const platinados = games.filter((game) => game.status === 'Platinado')
 
+    const imageUrl = 'https://e0.pxfuel.com/wallpapers/872/403/desktop-wallpaper-black-and-blue-gaming-black-and-blue-gaming-background-on-bat-mobile-gamer.jpg'
+
     return (
         <ScrollView style={styles.container}>
-            <ImageBackground source='https://img.freepik.com/premium-vector/modern-dark-abstract-background-with-red-light_55870-87.jpg' style={{ paddingTop: 15, paddingLeft: 20 }} contentFit='fill'>
+            <ImageBackground source={imageUrl} style={{ paddingTop: 15, paddingLeft: 20 }} contentFit='fill'>
 
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                     <H1>Todos Os Jogos</H1>
