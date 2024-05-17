@@ -1,5 +1,5 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import SeriesScreen from '../screens/SeriesScreen'
+import SeriesScreen from '../screens//serie/SeriesScreen'
 import { StyleSheet } from 'react-native';
 import GameNavigator from './GameNavigator';
 import { COLORS } from "../constants/constants"

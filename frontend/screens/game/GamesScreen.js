@@ -1,13 +1,13 @@
 import { View, Text, StyleSheet, ScrollView, FlatList } from "react-native"
 import { useState, useEffect } from "react"
-import H1 from "../components/ui/H1"
+import H1 from "../../components/ui/H1"
 import axios from "axios"
-import CardGame from "../components/CardGame"
-import Button from "../components/ui/Button"
+import CardGame from "../../components/CardGame"
+import Button from "../../components/ui/Button"
 import { useNavigation } from "@react-navigation/native"
 import { ImageBackground } from "expo-image"
-import { COLORS } from "../constants/constants"
-import useGameStore from "../stores/gameStore"
+import { COLORS } from "../../constants/constants"
+import useGameStore from "../../stores/gameStore"
 
 const GamesScreen = () => {
     const { games, setGames } = useGameStore(state => state)

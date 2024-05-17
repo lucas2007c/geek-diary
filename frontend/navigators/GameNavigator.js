@@ -3,8 +3,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 import { COLORS } from "../constants/constants"
 
-import GameRegister from '../screens/GameRegister';
-import GamesScreen from '../screens/GamesScreen';
+import GameRegister from '../screens/game/GameRegister';
+import GamesScreen from '../screens/game/GamesScreen';
 
 const GameNavigator = () => {
     return (

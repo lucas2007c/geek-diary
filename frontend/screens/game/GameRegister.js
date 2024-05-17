@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native"
-import H1 from '../components/ui/H1.js'
-import { COLORS } from "../constants/constants"
+import H1 from '../../components/ui/H1.js'
+import { COLORS } from "../../constants/constants.js"
 import { useState } from "react"
-import Button from "../components/ui/Button.js"
+import Button from "../../components/ui/Button.js"
 import axios from "axios"
 import { useNavigation } from "@react-navigation/native"
-import useGameStore from "../stores/gameStore.js"
+import useGameStore from "../../stores/gameStore.js"
 
 const GameRegister = () => {
     const addGame = useGameStore(state => state.addGame)
