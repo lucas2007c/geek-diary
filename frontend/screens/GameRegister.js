@@ -5,8 +5,11 @@ import { useState } from "react"
 import Button from "../components/ui/Button.js"
 import axios from "axios"
 import { useNavigation } from "@react-navigation/native"
+import useGameStore from "../stores/gameStore.js"
 
 const GameRegister = () => {
+    const addGame = useGameStore(state => state.addGame)
+
     const [txtName, setTxtName] = useState('')
     const [txtUrl, setTxtUrl] = useState('')
     const [txtStart, setTxtStart] = useState('')
@@ -26,6 +29,7 @@ const GameRegister = () => {
         }
         try {
             const response = await axios.post('http://localhost:3000/game', newGame)
+            addGame(response.data.game)
             navigation.navigate('jogoslist')
         } catch (error) {
             let fieldsErros = ''

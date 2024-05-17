@@ -7,9 +7,10 @@ import Button from "../components/ui/Button"
 import { useNavigation } from "@react-navigation/native"
 import { ImageBackground } from "expo-image"
 import { COLORS } from "../constants/constants"
+import useGameStore from "../stores/gameStore"
 
 const GamesScreen = () => {
-    const [games, setGames] = useState([])
+    const { games, setGames } = useGameStore(state => state)
     const navigation = useNavigation()
 
     const getGames = async () => {
