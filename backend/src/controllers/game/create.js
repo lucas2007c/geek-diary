@@ -5,10 +5,9 @@ import dateFormat from "../../helpers/dateFormat.js";
 const create = async (req, res) => {
     try {
         const data = req.body
-
         const result = gameModel.validateGameToCreate(data)
         if (!result.success) {
-            return res.status(400).json({ error: 'Dados de cadastro inválidos', fields: zodErrorFormat(result.error) })
+            return res.status(400).json({ msg: 'Dados de cadastro inválidos', fields: zodErrorFormat(result.error) })
         }
 
         const game = await gameModel.create(data)

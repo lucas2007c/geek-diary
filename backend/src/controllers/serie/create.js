@@ -8,7 +8,7 @@ const create = async (req, res) => {
 
         const result = serieModel.validateSerieToCreate(data)
         if (!result.success) {
-            return res.status(400).json({ error: 'Dados de cadastro inválidos', fields: zodErrorFormat(result.error) })
+            return res.status(400).json({ msg: 'Dados de cadastro inválidos', fields: zodErrorFormat(result.error) })
         }
 
         const serie = await serieModel.create(data)
