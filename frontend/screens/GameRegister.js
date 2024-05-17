@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, TextInput } from "react-native"
 import H1 from '../components/ui/H1.js'
+import { COLORS } from "../constants/constants"
 
 const GameRegister = () => {
     return (
@@ -22,7 +23,7 @@ const GameRegister = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#242A32'
+        backgroundColor: COLORS.background
     },
     label: {
         fontSize: 20

@@ -5,6 +5,8 @@ import axios from "axios"
 import CardGame from "../components/CardGame"
 import Button from "../components/ui/Button"
 import { useNavigation } from "@react-navigation/native"
+import { ImageBackground } from "expo-image"
+import { COLORS } from "../constants/constants"
 
 const GamesScreen = () => {
     const [games, setGames] = useState([])
@@ -30,40 +32,43 @@ const GamesScreen = () => {
 
     return (
         <ScrollView style={styles.container}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <H1>Todos Os Jogos</H1>
-                <Button title='Novo' style={{ marginRight: 50 }} onPress={() => navigation.navigate('jogocadastro')} />
-            </View>
-            <FlatList
-                data={games}
-                renderItem={({ item }) => <CardGame game={item} />}
-                keyExtractor={item => item.id}
-                horizontal={true}
-            />
+            <ImageBackground source='https://img.freepik.com/premium-vector/modern-dark-abstract-background-with-red-light_55870-87.jpg' style={{ paddingTop: 15, paddingLeft: 20 }} contentFit='fill'>
 
-            <H1>Jogando</H1>
-            <FlatList
-                data={jogando}
-                renderItem={({ item }) => <CardGame game={item} />}
-                keyExtractor={item => item.id}
-                horizontal={true}
-            />
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <H1>Todos Os Jogos</H1>
+                    <Button title='Novo' style={{ marginRight: 50 }} onPress={() => navigation.navigate('jogocadastro')} />
+                </View>
+                <FlatList
+                    data={games}
+                    renderItem={({ item }) => <CardGame game={item} />}
+                    keyExtractor={item => item.id}
+                    horizontal={true}
+                />
 
-            <H1>Zerados</H1>
-            <FlatList
-                data={zerados}
-                renderItem={({ item }) => <CardGame game={item} />}
-                keyExtractor={item => item.id}
-                horizontal={true}
-            />
+                <H1>Jogando</H1>
+                <FlatList
+                    data={jogando}
+                    renderItem={({ item }) => <CardGame game={item} />}
+                    keyExtractor={item => item.id}
+                    horizontal={true}
+                />
 
-            <H1>Platinados</H1>
-            <FlatList
-                data={platinados}
-                renderItem={({ item }) => <CardGame game={item} />}
-                keyExtractor={item => item.id}
-                horizontal={true}
-            />
+                <H1>Zerados</H1>
+                <FlatList
+                    data={zerados}
+                    renderItem={({ item }) => <CardGame game={item} />}
+                    keyExtractor={item => item.id}
+                    horizontal={true}
+                />
+
+                <H1>Platinados</H1>
+                <FlatList
+                    data={platinados}
+                    renderItem={({ item }) => <CardGame game={item} />}
+                    keyExtractor={item => item.id}
+                    horizontal={true}
+                />
+            </ImageBackground>
         </ScrollView>
     )
 }
@@ -71,9 +76,7 @@ const GamesScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#242A32',
-        paddingTop: 15,
-        paddingLeft: 20
+        // backgroundColor: COLORS.background,
     }
 })
 

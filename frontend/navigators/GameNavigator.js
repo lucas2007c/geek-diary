@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
+import { COLORS } from "../constants/constants"
 
 import GameRegister from '../screens/GameRegister';
 import GamesScreen from '../screens/GamesScreen';
@@ -25,7 +26,7 @@ const GameNavigator = () => {
 
 const styles = StyleSheet.create({
     mainTab: {
-        backgroundColor: '#242A32',
+        backgroundColor: COLORS.background,
         paddingTop: 40,
         textAlign: 'center',
     },

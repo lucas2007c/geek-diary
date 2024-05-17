@@ -1,5 +1,6 @@
 import { StyleSheet, View } from "react-native"
 import { Image } from 'expo-image'
+import { COLORS } from "../constants/constants"
 
 const CardGame = ({ game }) => {
     return (
@@ -14,9 +15,9 @@ const styles = StyleSheet.create({
         width: 130,
         height: 180,
         margin: 15,
-        // borderColor: '#0296E5',
-        // borderWidth: 1,
-        // borderRadius: 10,
+        borderColor: COLORS.primary,
+        borderWidth: 1,
+        borderRadius: 10,
     },
     image: {
         flex: 1,

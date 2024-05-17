@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons';
+import { COLORS } from "./constants/constants"
 
 //Screens
 import MainNavigator from './navigators/MainNavigator';
@@ -15,13 +16,13 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator screenOptions={{
         tabBarStyle: {
-          backgroundColor: '#242A32',
-          borderColor: '#0296E5',
+          backgroundColor: COLORS.background,
+          borderColor: COLORS.primary,
           height: 60,
           padding: 5
         },
-        tabBarActiveTintColor: '#0296E5',
-        tabBarInactiveTintColor: '#67686D',
+        tabBarActiveTintColor: COLORS.primary,
+        tabBarInactiveTintColor: COLORS.secondary,
         tabBarLabelStyle: {
           fontSize: 15
         }
