@@ -15,14 +15,14 @@ const update = async (req, res) => {
 
         const result = gameModel.validateGameToCreate(data)
         if (!result.success) {
-            return res.status(400).json({ error: 'Dados de atualização inválidos', fields: zodErrorFormat(result.error) })
+            return res.status(400).json({ msg: 'Dados de atualização inválidos', fields: zodErrorFormat(result.error) })
         }
 
         const game = await gameModel.update(+id, +userID, data)
         res.json({ msg: `Jogo ${id} atualizado com sucesso!`, game: dateFormat(game) })
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ error: 'Opsss erro no servidor, tente novamente!' })
+        return res.status(500).json({ msg: 'Opsss erro no servidor, tente novamente!' })
     }
 }
 

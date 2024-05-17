@@ -14,14 +14,14 @@ const update = async (req, res) => {
 
         const result = userModel.validateUserToUpdate(data)
         if (!result.success) {
-            return res.status(400).json({ error: 'Dados de atualização inválidos', fields: zodErrorFormat(result.error) })
+            return res.status(400).json({ msg: 'Dados de atualização inválidos', fields: zodErrorFormat(result.error) })
         }
 
         const user = await userModel.update(+id, data)
         res.json({ msg: `Usuário ${id} atualizado com sucesso!`, user })
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ error: 'Opsss erro no servidor, tente novamente!' })
+        return res.status(500).json({ msg: 'Opsss erro no servidor, tente novamente!' })
     }
 }
 

@@ -15,7 +15,7 @@ const remove = async (req, res) => {
         res.json({ msg: `Série ${id} deletada com sucesso!`, serie: dateFormat(serie) })
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ error: 'Opsss erro no servidor, tente novamente!' })
+        return res.status(500).json({ msg: 'Opsss erro no servidor, tente novamente!' })
     }
 
 }

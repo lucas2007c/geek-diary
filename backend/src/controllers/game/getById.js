@@ -13,7 +13,7 @@ const getById = async (req, res) => {
         res.json({ msg: `Jogo ${id} listado com sucesso!`, game: dateFormat(game) })
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ error: 'Opsss erro no servidor, tente novamente!' })
+        return res.status(500).json({ msg: 'Opsss erro no servidor, tente novamente!' })
     }
 
 }

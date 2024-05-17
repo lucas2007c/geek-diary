@@ -12,7 +12,7 @@ const getById = async (req, res) => {
         res.json({ msg: `Usuário ${id} listado com sucesso!`, user })
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ error: 'Opsss erro no servidor, tente novamente!' })
+        return res.status(500).json({ msg: 'Opsss erro no servidor, tente novamente!' })
     }
 
 }

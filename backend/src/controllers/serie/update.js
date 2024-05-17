@@ -14,14 +14,14 @@ const update = async (req, res) => {
 
         const result = serieModel.validateSerieToUpdate(data)
         if (!result.success) {
-            return res.status(400).json({ error: 'Dados de atualização inválidos', fields: zodErrorFormat(result.error) })
+            return res.status(400).json({ msg: 'Dados de atualização inválidos', fields: zodErrorFormat(result.error) })
         }
 
         const serie = await serieModel.update(+id, +userID, data)
         res.json({ msg: `Série ${id} atualizada com sucesso!`, serie: dateFormat(serie) })
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ error: 'Opsss erro no servidor, tente novamente!' })
+        return res.status(500).json({ msg: 'Opsss erro no servidor, tente novamente!' })
     }
 }
 
