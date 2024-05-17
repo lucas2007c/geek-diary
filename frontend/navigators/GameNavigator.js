@@ -5,6 +5,7 @@ import { COLORS } from "../constants/constants"
 
 import GameRegister from '../screens/game/GameRegister';
 import GamesScreen from '../screens/game/GamesScreen';
+import GameEdit from '../screens/game/GameEdit';
 
 const GameNavigator = () => {
     return (
@@ -12,8 +13,18 @@ const GameNavigator = () => {
             <Stack.Screen name="jogoslist" component={GamesScreen} options={{
                 headerShown: false
             }} />
+
             <Stack.Screen name="jogocadastro" component={GameRegister} options={{
                 headerTitle: 'Cadastrar',
+                headerStyle: styles.mainTab,
+                headerTitleStyle: styles.tabLabel,
+                headerTintColor: '#fff',
+                headerTitleAlign: 'center',
+                headerShadowVisible: false
+            }} />
+
+            <Stack.Screen name="jogoeditar" component={GameEdit} options={{
+                headerTitle: 'Editar',
                 headerStyle: styles.mainTab,
                 headerTitleStyle: styles.tabLabel,
                 headerTintColor: '#fff',
@@ -32,7 +43,7 @@ const styles = StyleSheet.create({
     },
     tabLabel: {
         color: '#fff',
-        fontSize: 17,
+        fontSize: 17
     },
     back: {
         color: '#fff'
