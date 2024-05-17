@@ -13,7 +13,7 @@ const update = async (req, res) => {
 
         const data = req.body
 
-        const result = gameModel.validateGameToCreate(data)
+        const result = gameModel.validateGameToUpdate(data)
         if (!result.success) {
             return res.status(400).json({ msg: 'Dados de atualização inválidos', fields: zodErrorFormat(result.error) })
         }
