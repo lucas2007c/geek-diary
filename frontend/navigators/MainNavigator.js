@@ -22,11 +22,11 @@ const MainNavigator = () => {
                 tabBarStyle: styles.mainTab,
                 tabBarLabelStyle: styles.tabLabel
             }} />
-            <Tab.Screen name="series" component={SeriesScreen} options={{
+            {/* <Tab.Screen name="series" component={SeriesScreen} options={{
                 tabBarLabel: 'Séries',
                 tabBarStyle: styles.mainTab,
                 tabBarLabelStyle: styles.tabLabel
-            }} />
+            }} /> */}
         </Tab.Navigator>
     );
 }
