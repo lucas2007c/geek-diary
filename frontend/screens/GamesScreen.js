@@ -33,45 +33,47 @@ const GamesScreen = () => {
     const imageUrl = 'https://e0.pxfuel.com/wallpapers/872/403/desktop-wallpaper-black-and-blue-gaming-black-and-blue-gaming-background-on-bat-mobile-gamer.jpg'
 
     return (
-        <ScrollView style={styles.container}>
-            <ImageBackground source={imageUrl} style={{ paddingTop: 15, paddingLeft: 20 }} contentFit='fill'>
+        <View style={{ flex: 1, backgroundColor: COLORS.secondary }}>
+            <ImageBackground source={imageUrl} style={{ paddingTop: 15, paddingLeft: 20, flex: 1 }} contentFit='fill'>
+                <ScrollView>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <H1>Todos Os Jogos ({games.length})</H1>
-                    <Button title='Novo' style={{ marginRight: 50 }} onPress={() => navigation.navigate('jogocadastro')} />
-                </View>
-                <FlatList
-                    data={games}
-                    renderItem={({ item }) => <CardGame game={item} />}
-                    keyExtractor={item => item.id}
-                    horizontal={true}
-                />
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <H1>Todos Os Jogos ({games.length})</H1>
+                        <Button title='Novo' style={{ marginRight: 50 }} onPress={() => navigation.navigate('jogocadastro')} />
+                    </View>
+                    <FlatList
+                        data={games}
+                        renderItem={({ item }) => <CardGame game={item} />}
+                        keyExtractor={item => item.id}
+                        horizontal={true}
+                    />
 
-                <H1>Jogando ({jogando.length})</H1>
-                <FlatList
-                    data={jogando}
-                    renderItem={({ item }) => <CardGame game={item} />}
-                    keyExtractor={item => item.id}
-                    horizontal={true}
-                />
+                    <H1>Jogando ({jogando.length})</H1>
+                    <FlatList
+                        data={jogando}
+                        renderItem={({ item }) => <CardGame game={item} />}
+                        keyExtractor={item => item.id}
+                        horizontal={true}
+                    />
 
-                <H1>Zerados ({zerados.length})</H1>
-                <FlatList
-                    data={zerados}
-                    renderItem={({ item }) => <CardGame game={item} />}
-                    keyExtractor={item => item.id}
-                    horizontal={true}
-                />
+                    <H1>Zerados ({zerados.length})</H1>
+                    <FlatList
+                        data={zerados}
+                        renderItem={({ item }) => <CardGame game={item} />}
+                        keyExtractor={item => item.id}
+                        horizontal={true}
+                    />
 
-                <H1>Platinados ({platinados.length})</H1>
-                <FlatList
-                    data={platinados}
-                    renderItem={({ item }) => <CardGame game={item} />}
-                    keyExtractor={item => item.id}
-                    horizontal={true}
-                />
+                    <H1>Platinados ({platinados.length})</H1>
+                    <FlatList
+                        data={platinados}
+                        renderItem={({ item }) => <CardGame game={item} />}
+                        keyExtractor={item => item.id}
+                        horizontal={true}
+                    />
+                </ScrollView>
             </ImageBackground>
-        </ScrollView>
+        </View>
     )
 }
 
