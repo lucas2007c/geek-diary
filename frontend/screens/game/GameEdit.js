@@ -10,6 +10,7 @@ import axios from "axios";
 
 const GameEdit = () => {
     const updateGame = useGameStore(state => state.updateGame)
+    const removeGame = useGameStore(state => state.removeGame)
     const navigation = useNavigation()
     const route = useRoute()
     const game = route.params
@@ -35,8 +36,27 @@ const GameEdit = () => {
         }
 
         try {
-            const response = await axios.put(`http://localhost:3000/game/${game.id}/${game.users_id}`, newGame)
-            updateGame(game.id, game.users_id, response.data.game,)
+            await axios.put(`http://localhost:3000/game/${game.id}/${game.users_id}`, newGame)
+            updateGame(game.id, game.users_id)
+            navigation.navigate('jogoslist')
+        } catch (error) {
+            let fieldsErros = ''
+            if (error?.response?.data?.fields) {
+                for (let field in error.response.data.fields) {
+                    fieldsErros += field[0] + '\n'
+                }
+                fieldsErros = error?.response?.data?.fields?.image
+            }
+
+            alert(`${error.response.data.msg} \n` + fieldsErros);
+            console.log(error.response.data);
+        }
+    }
+
+    const deleteGame = async () => {
+        try {
+            const response = await axios.delete(`http://localhost:3000/game/${game.id}/${game.users_id}`)
+            removeGame(game.id, game.users_id)
             navigation.navigate('jogoslist')
         } catch (error) {
             let fieldsErros = ''
@@ -127,7 +147,11 @@ const GameEdit = () => {
             </View>
 
             <View style={styles.field}>
-                <Button title='Editar' onPress={putGame} />
+                <Button title='Confirmar' onPress={putGame} />
+            </View>
+
+            <View style={styles.field}>
+                <Button title='Excluir jogo' onPress={deleteGame} style={{ backgroundColor: '#f33' }} />
             </View>
         </ScrollView>
     )
