@@ -15,18 +15,20 @@ const MainNavigator = () => {
                 backgroundColor: COLORS.primary
             },
             tabBarActiveTintColor: COLORS.primary,
-            tabBarInactiveTintColor: '#fff'
+            tabBarInactiveTintColor: '#fff',
+            swipeEnabled: false
         }}>
             <Tab.Screen name="jogos" component={GameNavigator} options={{
                 tabBarLabel: 'Jogos',
                 tabBarStyle: styles.mainTab,
                 tabBarLabelStyle: styles.tabLabel
             }} />
-            {/* <Tab.Screen name="series" component={SeriesScreen} options={{
+
+            <Tab.Screen name="series" component={SeriesScreen} options={{
                 tabBarLabel: 'Séries',
                 tabBarStyle: styles.mainTab,
                 tabBarLabelStyle: styles.tabLabel
-            }} /> */}
+            }} />
         </Tab.Navigator>
     );
 }
