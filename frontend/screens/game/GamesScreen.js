@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import H1 from "../../components/ui/H1"
 import axios from "axios"
 import CardGame from "../../components/CardGame"
+import CardEmpty from "../../components/CardEmpty"
 import Button from "../../components/ui/Button"
 import { useNavigation } from "@react-navigation/native"
 import { ImageBackground } from "expo-image"
@@ -44,7 +45,7 @@ const GamesScreen = () => {
                     </View>
                     <FlatList
                         data={games}
-                        renderItem={({ item }) => <CardGame game={item} />}
+                        renderItem={({ item }) => item.image ? <CardGame game={item} /> : <CardEmpty game={item} />}
                         keyExtractor={item => item.id}
                         horizontal={true}
                     />
