@@ -15,6 +15,7 @@ const GameEdit = () => {
     const route = useRoute()
     const game = route.params
 
+
     const [txtName, setTxtName] = useState(game.name)
     const [txtUrl, setTxtUrl] = useState(!game.image ? '' : game.image)
     const [txtStart, setTxtStart] = useState(!game.start ? '' : game.start)
@@ -26,12 +27,12 @@ const GameEdit = () => {
     const putGame = async () => {
         const newGame = {
             name: txtName,
-            image: txtUrl !== '' ? txtUrl : undefined,
+            image: txtUrl,
             notes: txtNotes,
-            start: txtStart !== '' ? txtStart : undefined,
-            finish: txtFinish !== '' ? txtFinish : undefined,
-            platinum: txtPlatinum !== '' ? txtPlatinum : undefined,
-            status: txtStatus !== '' ? txtStatus : undefined,
+            start: txtStart ? txtStart : null,
+            finish: txtFinish ? txtFinish : null,
+            platinum: txtPlatinum ? txtPlatinum : null,
+            status: txtStatus ? txtStatus : null,
             users_id: 1,
         }
 
@@ -43,13 +44,11 @@ const GameEdit = () => {
             let fieldsErros = ''
             if (error?.response?.data?.fields) {
                 for (let field in error.response.data.fields) {
-                    fieldsErros += field[0] + '\n'
+                    fieldsErros += error.response.data.fields[field] + '\n'
                 }
-                fieldsErros = error?.response?.data?.fields?.image
             }
 
             alert(`${error.response.data.msg} \n` + fieldsErros);
-            console.log(error.response.data);
         }
     }
 

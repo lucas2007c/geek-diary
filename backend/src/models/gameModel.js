@@ -15,14 +15,15 @@ const gameSchema = z.object({
     image: z.string({
         invalid_type_error: 'A imagem deve ser uma string'
     })
-        .url('Url da imagem inválida'),
+        .url('Url da imagem inválida').or(z.literal('')),
     notes: z.string({
         invalid_type_error: 'As notas devem ser uma string'
     })
         .max(1000, 'As anotações devem ter no máximo 1000 caracteres'),
     status: z.string({
-        invalid_type_error: 'O ultimp ep deve ser uma string'
+        invalid_type_error: 'O status deve ser uma string'
     })
+        .or(z.literal(null))
 })
 
 const validateGameToCreate = (game) => {
