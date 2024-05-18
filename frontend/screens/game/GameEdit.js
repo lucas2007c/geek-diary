@@ -36,8 +36,8 @@ const GameEdit = () => {
         }
 
         try {
-            await axios.put(`http://localhost:3000/game/${game.id}/${game.users_id}`, newGame)
-            updateGame(game.id, game.users_id)
+            const response = await axios.put(`http://localhost:3000/game/${game.id}/${game.users_id}`, newGame)
+            updateGame(game.id, game.users_id, response.data.game)
             navigation.navigate('jogoslist')
         } catch (error) {
             let fieldsErros = ''
