@@ -88,6 +88,7 @@ const GameEdit = () => {
                 style={[styles.txtinput, styles.title]}
                 value={txtName}
                 onChangeText={setTxtName}
+                maxLength={200}
             />
 
             <View style={styles.field}>
@@ -174,6 +175,7 @@ const GameEdit = () => {
                     multiline
                     value={txtNotes}
                     onChangeText={setTxtNotes}
+                    maxLength={1000}
                 />
             </View>
 

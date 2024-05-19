@@ -62,6 +62,7 @@ const GameRegister = () => {
                     style={styles.txtinput}
                     value={txtName}
                     onChangeText={setTxtName}
+                    maxLength={200}
                 />
             </View>
 
@@ -105,6 +106,7 @@ const GameRegister = () => {
                     multiline
                     value={txtNotes}
                     onChangeText={setTxtNotes}
+                    maxLength={1000}
                 />
             </View>
 
