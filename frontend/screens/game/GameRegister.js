@@ -6,6 +6,7 @@ import Button from "../../components/ui/Button.js"
 import axios from "axios"
 import { useNavigation } from "@react-navigation/native"
 import useGameStore from "../../stores/gameStore.js"
+import RadioButtonGroup, { RadioButtonItem } from "expo-radio-button";
 
 const GameRegister = () => {
     const addGame = useGameStore(state => state.addGame)
@@ -69,7 +70,7 @@ const GameRegister = () => {
             <View style={styles.field}>
                 <H1 style={styles.label}>Url da capa</H1>
                 <TextInput
-                    placeholder="Insira sua url..."
+                    placeholder="http://image.url"
                     placeholderTextColor={COLORS.secondary}
                     style={styles.txtinput}
                     value={txtUrl}
@@ -80,6 +81,8 @@ const GameRegister = () => {
             <View style={styles.field}>
                 <H1 style={styles.label}>Data de ínicio</H1>
                 <TextInput
+                    placeholder="DD/MM/YYYY"
+                    placeholderTextColor={COLORS.secondary}
                     style={styles.txtinput}
                     value={txtStart}
                     onChangeText={(value) => setTxtStart(dateFormat(value))}
@@ -90,11 +93,25 @@ const GameRegister = () => {
 
             <View style={styles.field}>
                 <H1 style={styles.label}>Status</H1>
-                <TextInput
-                    style={styles.txtinput}
-                    value={txtStatus}
-                    onChangeText={setTxtStatus}
-                />
+                <RadioButtonGroup
+                    selected={txtStatus}
+                    onSelected={(value) => setTxtStatus(value)}
+                    radioBackground={COLORS.primary}
+                    radioStyle={{ borderColor: COLORS.secondary }}
+                >
+                    <RadioButtonItem value='Jogando' label={
+                        <H1 style={styles.label}>Jogando</H1>
+                    } />
+                    <RadioButtonItem value='Zerado' style={{ marginVertical: 10 }} label={
+                        <H1 style={styles.label}>Zerado</H1>
+                    } />
+                    <RadioButtonItem value='Platinado' label={
+                        <H1 style={styles.label}>Platinado</H1>
+                    } />
+                    <RadioButtonItem value='' style={{ marginVertical: 10 }} label={
+                        <H1 style={styles.label}>Nenhum</H1>
+                    } />
+                </RadioButtonGroup>
             </View>
 
             <View style={styles.field}>

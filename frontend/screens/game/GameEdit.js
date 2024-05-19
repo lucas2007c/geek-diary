@@ -109,7 +109,7 @@ const GameEdit = () => {
             <View style={styles.field}>
                 <H1 style={styles.label}>ínicio</H1>
                 <TextInput
-                    placeholder="dd/mm/yyyy"
+                    placeholder="DD/MM/YYYY"
                     placeholderTextColor={COLORS.secondary}
                     style={styles.txtinput}
                     value={txtStart}
@@ -122,7 +122,7 @@ const GameEdit = () => {
             <View style={styles.field}>
                 <H1 style={styles.label}>Zerado</H1>
                 <TextInput
-                    placeholder="dd/mm/yyyy"
+                    placeholder="DD/MM/YYYY"
                     placeholderTextColor={COLORS.secondary}
                     style={styles.txtinput}
                     value={txtFinish}
@@ -134,7 +134,7 @@ const GameEdit = () => {
             <View style={styles.field}>
                 <H1 style={styles.label}>Platinado</H1>
                 <TextInput
-                    placeholder="dd/mm/yyyy"
+                    placeholder="DD/MM/YYYY"
                     placeholderTextColor={COLORS.secondary}
                     style={styles.txtinput}
                     value={txtPlatinum}
