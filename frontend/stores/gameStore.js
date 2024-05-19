@@ -2,7 +2,6 @@ import { create } from 'zustand'
 
 const useGameStore = create((set) => ({
     games: [],
-    fabricante: '',
     setGames: (newGames) => set(() => ({ games: newGames })),
     addGame: (newGame) => set((state) => ({ games: [...state.games, newGame] })),
     removeGame: (id, userID) => set((state) => {
