@@ -1,4 +1,4 @@
-import { View, TextInput, StyleSheet, ScrollView } from "react-native"
+import { View, TextInput, StyleSheet, ScrollView, Modal, Text } from "react-native"
 import { COLORS } from "../../constants/constants"
 import { useNavigation, useRoute } from '@react-navigation/native';
 import useGameStore from '../../stores/gameStore.js'
@@ -24,6 +24,7 @@ const GameEdit = () => {
     const [txtPlatinum, setTxtPlatinum] = useState(!game.platinum ? '' : game.platinum)
     const [txtStatus, setTxtStatus] = useState(!game.status ? '' : game.status)
     const [txtNotes, setTxtNotes] = useState(!game.notes ? '' : game.notes)
+    const [modalVisible, setModalVisible] = useState(false)
 
     const putGame = async () => {
         const newGame = {
@@ -184,8 +185,33 @@ const GameEdit = () => {
             </View>
 
             <View style={styles.field}>
-                <Button title='Excluir jogo' onPress={deleteGame} style={{ backgroundColor: '#f33' }} />
+                <Button title='Excluir jogo' onPress={() => setModalVisible(true)} style={{ backgroundColor: '#f33' }} />
             </View>
+
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    setModalVisible(false)
+                }}>
+                <View style={styles.centeredView}>
+                    <View style={styles.modalContainer}>
+                        <H1 style={{ fontSize: 20 }}> Deseja excluir este jogo?</H1>
+                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
+                            <Button
+                                title='Excluir'
+                                onPress={deleteGame}
+                                style={{ backgroundColor: '#f33', marginRight: 15, padding: 10 }} />
+
+                            <Button
+                                title='Cancelar'
+                                onPress={() => setModalVisible(false)}
+                                style={{ padding: 10 }} />
+                        </View>
+                    </View>
+                </View>
+            </Modal>
         </ScrollView>
     )
 }
@@ -218,6 +244,18 @@ const styles = StyleSheet.create({
     gameImage: {
         width: '100%',
         height: 200
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    modalContainer: {
+        padding: 15,
+        borderRadius: 15,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: COLORS.secondary,
     }
 })
 
