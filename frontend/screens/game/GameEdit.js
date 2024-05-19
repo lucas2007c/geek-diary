@@ -72,6 +72,13 @@ const GameEdit = () => {
         }
     }
 
+    const dateFormat = (value) => {
+        value = value.replace(/\D/g, ""); // Remove não númericos
+        value = value.replace(/^(\d{2})(\d)/, "$1/$2"); // adiciona a barra depois do dia
+        value = value.replace(/(\d{2})\/(\d{2})(\d)/, "$1/$2/$3"); // adiciona a barra depois do mês
+        return value;
+    }
+
     return (
         <ScrollView style={styles.container}>
 
@@ -90,7 +97,7 @@ const GameEdit = () => {
             <View style={styles.field}>
                 <H1 style={styles.label}>Url da capa</H1>
                 <TextInput
-                    placeholder="Insira sua url..."
+                    placeholder="http://image.url"
                     placeholderTextColor={COLORS.secondary}
                     style={styles.txtinput}
                     value={txtUrl}
@@ -101,27 +108,37 @@ const GameEdit = () => {
             <View style={styles.field}>
                 <H1 style={styles.label}>ínicio</H1>
                 <TextInput
+                    placeholder="dd/mm/yyyy"
+                    placeholderTextColor={COLORS.secondary}
                     style={styles.txtinput}
                     value={txtStart}
-                    onChangeText={setTxtStart}
+                    onChangeText={(value) => setTxtStart(dateFormat(value))}
+                    maxLength={10}
+                    keyboardType="numeric"
                 />
             </View>
 
             <View style={styles.field}>
                 <H1 style={styles.label}>Zerado</H1>
                 <TextInput
+                    placeholder="dd/mm/yyyy"
+                    placeholderTextColor={COLORS.secondary}
                     style={styles.txtinput}
                     value={txtFinish}
-                    onChangeText={setTxtFinish}
+                    onChangeText={(value) => setTxtFinish(dateFormat(value))}
+                    maxLength={10}
                 />
             </View>
 
             <View style={styles.field}>
                 <H1 style={styles.label}>Platinado</H1>
                 <TextInput
+                    placeholder="dd/mm/yyyy"
+                    placeholderTextColor={COLORS.secondary}
                     style={styles.txtinput}
                     value={txtPlatinum}
-                    onChangeText={setTxtPlatinum}
+                    onChangeText={(value) => setTxtPlatinum(dateFormat(value))}
+                    maxLength={10}
                 />
             </View>
 

@@ -45,6 +45,13 @@ const GameRegister = () => {
         }
     }
 
+    const dateFormat = (value) => {
+        value = value.replace(/\D/g, ""); // Remove não númericos
+        value = value.replace(/^(\d{2})(\d)/, "$1/$2"); // adiciona a barra depois do dia
+        value = value.replace(/(\d{2})\/(\d{2})(\d)/, "$1/$2/$3"); // adiciona a barra depois do mês
+        return value;
+    }
+
     return (
         <ScrollView style={styles.container}>
             <View style={styles.field}>
@@ -74,7 +81,9 @@ const GameRegister = () => {
                 <TextInput
                     style={styles.txtinput}
                     value={txtStart}
-                    onChangeText={setTxtStart}
+                    onChangeText={(value) => setTxtStart(dateFormat(value))}
+                    maxLength={10}
+                    keyboardType="numeric"
                 />
             </View>
 
