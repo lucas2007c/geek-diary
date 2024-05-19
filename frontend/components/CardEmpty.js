@@ -1,16 +1,13 @@
-import { Pressable, StyleSheet, Text, View } from "react-native"
-import { Image } from 'expo-image'
+import { StyleSheet, Text, View } from "react-native"
 import { COLORS } from "../constants/constants"
-import { useNavigation } from "@react-navigation/native"
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const cardEmpty = ({ game }) => {
-    const navigation = useNavigation()
+const cardEmpty = ({ text }) => {
     return (
-        <Pressable onPress={() => navigation.navigate('jogoeditar', game)}>
-            <View style={styles.container}>
-                <Text style={{ color: '#fff' }}>{game.name}</Text>
-            </View>
-        </Pressable>
+        <View style={styles.container}>
+            <MaterialCommunityIcons name="google-controller-off" size={50} color={COLORS.primary} style={{ textAlign: 'center' }} />
+            <Text style={{ color: '#fff', textAlign: 'center', fontSize: 17 }}>{text}</Text>
+        </View>
     )
 }
 
@@ -23,7 +20,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 10,
         justifyContent: 'center',
-        alignItems: 'center'
+        backgroundColor: "rgba(0,0,0,0.5)"
     },
     image: {
         flex: 1,

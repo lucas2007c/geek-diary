@@ -43,36 +43,53 @@ const GamesScreen = () => {
                         <H1>Todos Os Jogos ({games.length})</H1>
                         <Button title='Novo' style={{ marginRight: 50 }} onPress={() => navigation.navigate('jogocadastro')} />
                     </View>
-                    <FlatList
-                        data={games}
-                        renderItem={({ item }) => item.image ? <CardGame game={item} /> : <CardEmpty game={item} />}
-                        keyExtractor={item => item.id}
-                        horizontal={true}
-                    />
+
+                    {games.length > 0 ?
+                        <FlatList
+                            data={games}
+                            renderItem={({ item }) => <CardGame game={item} />}
+                            keyExtractor={item => item.id}
+                            horizontal={true}
+                        />
+                        :
+                        <CardEmpty text='Nenhum jogo cadastrado' />
+                    }
 
                     <H1>Jogando ({jogando.length})</H1>
-                    <FlatList
-                        data={jogando}
-                        renderItem={({ item }) => <CardGame game={item} />}
-                        keyExtractor={item => item.id}
-                        horizontal={true}
-                    />
+                    {jogando.length > 0 ?
+                        <FlatList
+                            data={jogando}
+                            renderItem={({ item }) => <CardGame game={item} />}
+                            keyExtractor={item => item.id}
+                            horizontal={true}
+                        />
+                        :
+                        <CardEmpty text='Nenhum jogo iniciado' />
+                    }
 
                     <H1>Zerados ({zerados.length})</H1>
-                    <FlatList
-                        data={zerados}
-                        renderItem={({ item }) => <CardGame game={item} />}
-                        keyExtractor={item => item.id}
-                        horizontal={true}
-                    />
+                    {zerados.length > 0 ?
+                        <FlatList
+                            data={zerados}
+                            renderItem={({ item }) => <CardGame game={item} />}
+                            keyExtractor={item => item.id}
+                            horizontal={true}
+                        />
+                        :
+                        <CardEmpty text='Nenhum jogo zerado' />
+                    }
 
                     <H1>Platinados ({platinados.length})</H1>
-                    <FlatList
-                        data={platinados}
-                        renderItem={({ item }) => <CardGame game={item} />}
-                        keyExtractor={item => item.id}
-                        horizontal={true}
-                    />
+                    {platinados.length > 0 ?
+                        <FlatList
+                            data={platinados}
+                            renderItem={({ item }) => <CardGame game={item} />}
+                            keyExtractor={item => item.id}
+                            horizontal={true}
+                        />
+                        :
+                        <CardEmpty text='Nenhum jogo platinado' />
+                    }
                 </ScrollView>
             </ImageBackground>
         </View>
