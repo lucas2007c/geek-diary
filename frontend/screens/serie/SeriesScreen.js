@@ -60,7 +60,7 @@ const SerieScreen = () => {
                             <CardEmpty text='Nenhuma série cadastrada' />
                     }
 
-                    <H1>assistindo ({assistindo.length})</H1>
+                    <H1>Assistindo ({assistindo.length})</H1>
                     {assistindo.length > 0 ?
                         <FlatList
                             data={assistindo}
@@ -74,7 +74,7 @@ const SerieScreen = () => {
                             <CardEmpty text='Nenhuma série sendo assistida' />
                     }
 
-                    <H1>finalizadas ({finalizados.length})</H1>
+                    <H1>Finalizadas ({finalizados.length})</H1>
                     {finalizados.length > 0 ?
                         <FlatList
                             data={finalizados}
