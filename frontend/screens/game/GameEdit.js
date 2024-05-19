@@ -7,6 +7,7 @@ import H1 from '../../components/ui/H1.js'
 import Button from '../../components/ui/Button.js'
 import { Image } from 'expo-image'
 import axios from "axios";
+import RadioButtonGroup, { RadioButtonItem } from "expo-radio-button";
 
 const GameEdit = () => {
     const updateGame = useGameStore(state => state.updateGame)
@@ -126,14 +127,28 @@ const GameEdit = () => {
 
             <View style={styles.field}>
                 <H1 style={styles.label}>Status</H1>
-                <TextInput
-                    style={styles.txtinput}
-                    value={txtStatus}
-                    onChangeText={setTxtStatus}
-                />
+                <RadioButtonGroup
+                    selected={txtStatus}
+                    onSelected={(value) => setTxtStatus(value)}
+                    radioBackground={COLORS.primary}
+                    radioStyle={{ borderColor: COLORS.secondary }}
+                >
+                    <RadioButtonItem value='Jogando' label={
+                        <H1 style={styles.label}>Jogando</H1>
+                    } />
+                    <RadioButtonItem value='Zerado' style={{ marginVertical: 10 }} label={
+                        <H1 style={styles.label}>Zerado</H1>
+                    } />
+                    <RadioButtonItem value='Platinado' label={
+                        <H1 style={styles.label}>Platinado</H1>
+                    } />
+                    <RadioButtonItem value='' style={{ marginVertical: 10 }} label={
+                        <H1 style={styles.label}>Nenhum</H1>
+                    } />
+                </RadioButtonGroup>
             </View>
 
-            <View style={styles.field}>
+            <View style={[styles.field]}>
                 <H1 style={styles.label}>Anotações {!txtNotes?.length ? 0 : txtNotes.length}/1000</H1>
                 <TextInput
                     style={[styles.txtinput, { height: 500, color: '#fff', fontSize: 20, AlignVertical: 'top' }]}
