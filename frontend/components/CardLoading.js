@@ -1,12 +1,10 @@
-import { StyleSheet, Text, View } from "react-native"
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native"
 import { COLORS } from "../constants/constants"
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const CardEmpty = ({ text }) => {
+const CardLoading = ({ text }) => {
     return (
         <View style={styles.container}>
-            <MaterialCommunityIcons name="google-controller-off" size={50} color={COLORS.primary} style={{ textAlign: 'center' }} />
-            <Text style={{ color: '#fff', textAlign: 'center', fontSize: 17 }}>{text}</Text>
+            <ActivityIndicator size={50} color={COLORS.primary} />
         </View>
     )
 }
@@ -28,4 +26,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default CardEmpty
+export default CardLoading

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, FlatList } from "react-native"
+import { View, StyleSheet, ScrollView, FlatList, ActivityIndicator } from "react-native"
 import { useState, useEffect } from "react"
 import H1 from "../../components/ui/H1"
 import axios from "axios"
@@ -9,9 +9,11 @@ import { useNavigation } from "@react-navigation/native"
 import { ImageBackground } from "expo-image"
 import { COLORS } from "../../constants/constants"
 import useGameStore from "../../stores/gameStore"
+import CardLoading from "../../components/CardLoading"
 
 const GamesScreen = () => {
     const { games, setGames } = useGameStore(state => state)
+    const [loading, setLoading] = useState(true)
     const navigation = useNavigation()
 
     const getGames = async () => {
@@ -19,6 +21,7 @@ const GamesScreen = () => {
             const response = await axios.get('http://localhost:3000/game')
             const data = response.data.games
             setGames(data);
+            setLoading(false)
         } catch (error) {
             console.log(error);
         }
@@ -51,8 +54,10 @@ const GamesScreen = () => {
                             keyExtractor={item => item.id}
                             horizontal={true}
                         />
-                        :
-                        <CardEmpty text='Nenhum jogo cadastrado' />
+                        : loading ?
+                            <CardLoading />
+                            :
+                            <CardEmpty text='Nenhum jogo cadastrado' />
                     }
 
                     <H1>Jogando ({jogando.length})</H1>
@@ -63,8 +68,10 @@ const GamesScreen = () => {
                             keyExtractor={item => item.id}
                             horizontal={true}
                         />
-                        :
-                        <CardEmpty text='Nenhum jogo iniciado' />
+                        : loading ?
+                            <CardLoading />
+                            :
+                            <CardEmpty text='Nenhum jogo sendo jogado' />
                     }
 
                     <H1>Zerados ({zerados.length})</H1>
@@ -75,8 +82,10 @@ const GamesScreen = () => {
                             keyExtractor={item => item.id}
                             horizontal={true}
                         />
-                        :
-                        <CardEmpty text='Nenhum jogo zerado' />
+                        : loading ?
+                            <CardLoading />
+                            :
+                            <CardEmpty text='Nenhum jogo zerado' />
                     }
 
                     <H1>Platinados ({platinados.length})</H1>
@@ -87,8 +96,10 @@ const GamesScreen = () => {
                             keyExtractor={item => item.id}
                             horizontal={true}
                         />
-                        :
-                        <CardEmpty text='Nenhum jogo platinado' />
+                        : loading ?
+                            <CardLoading />
+                            :
+                            <CardEmpty text='Nenhum jogo platinado' />
                     }
                 </ScrollView>
             </ImageBackground>
