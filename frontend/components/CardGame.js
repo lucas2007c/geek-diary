@@ -12,7 +12,7 @@ const CardGame = ({ game }) => {
                 {game.image ?
                     <Image source={game.image} style={styles.image} contentFit="cover" contentPosition='center' />
                     :
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={styles.noImage}>
                         <MaterialCommunityIcons name="google-controller" size={50} color={COLORS.primary} />
                         <Text style={{ color: '#fff', fontSize: 17, textAlign: 'center' }}>{game.name}</Text>
                     </View>
@@ -36,6 +36,12 @@ const styles = StyleSheet.create({
     image: {
         flex: 1,
         borderRadius: 10,
+    },
+    noImage: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: "rgba(0,0,0,0.5)"
     }
 })
 
