@@ -64,14 +64,17 @@ const SerieRegister = () => {
     return (
         <ScrollView style={styles.container}>
 
-            <TextInput
-                placeholder="Nome..."
-                placeholderTextColor={COLORS.secondary}
-                style={[styles.txtinput, styles.title]}
-                value={txtName}
-                onChangeText={setTxtName}
-                maxLength={200}
-            />
+            <View style={styles.field}>
+                <H1 style={styles.label}>Nome do série</H1>
+                <TextInput
+                    placeholder="Nome..."
+                    placeholderTextColor={COLORS.secondary}
+                    style={styles.txtinput}
+                    value={txtName}
+                    onChangeText={setTxtName}
+                    maxLength={200}
+                />
+            </View>
 
             <View style={styles.field}>
                 <H1 style={styles.label}>Url da capa</H1>

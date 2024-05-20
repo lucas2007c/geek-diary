@@ -16,6 +16,8 @@ const GameRegister = () => {
     const [txtName, setTxtName] = useState('')
     const [txtUrl, setTxtUrl] = useState('')
     const [txtStart, setTxtStart] = useState('')
+    const [txtFinish, setTxtFinish] = useState('')
+    const [txtPlatinum, setTxtPlatinum] = useState('')
     const [txtStatus, setTxtStatus] = useState('')
     const [txtNotes, setTxtNotes] = useState('')
 
@@ -27,9 +29,12 @@ const GameRegister = () => {
             image: txtUrl !== '' ? txtUrl : undefined,
             notes: txtNotes !== '' ? txtNotes : undefined,
             start: txtStart !== '' ? txtStart : undefined,
+            finish: txtFinish !== '' ? txtFinish : undefined,
+            platinum: txtPlatinum !== '' ? txtPlatinum : undefined,
             status: txtStatus !== '' ? txtStatus : undefined,
             users_id: userLoggedID,
         }
+
         try {
             const response = await axios.post('http://localhost:3000/game', newGame)
             addGame(response.data.game)
@@ -81,13 +86,39 @@ const GameRegister = () => {
             </View>
 
             <View style={styles.field}>
-                <H1 style={styles.label}>Data de ínicio</H1>
+                <H1 style={styles.label}>Ínicio</H1>
                 <TextInput
                     placeholder="DD/MM/YYYY"
                     placeholderTextColor={COLORS.secondary}
                     style={styles.txtinput}
                     value={txtStart}
                     onChangeText={(value) => setTxtStart(dateFormat(value))}
+                    maxLength={10}
+                    keyboardType="numeric"
+                />
+            </View>
+
+            <View style={styles.field}>
+                <H1 style={styles.label}>Zerado</H1>
+                <TextInput
+                    placeholder="DD/MM/YYYY"
+                    placeholderTextColor={COLORS.secondary}
+                    style={styles.txtinput}
+                    value={txtFinish}
+                    onChangeText={(value) => setTxtFinish(dateFormat(value))}
+                    maxLength={10}
+                    keyboardType="numeric"
+                />
+            </View>
+
+            <View style={styles.field}>
+                <H1 style={styles.label}>Platinado</H1>
+                <TextInput
+                    placeholder="DD/MM/YYYY"
+                    placeholderTextColor={COLORS.secondary}
+                    style={styles.txtinput}
+                    value={txtPlatinum}
+                    onChangeText={(value) => setTxtPlatinum(dateFormat(value))}
                     maxLength={10}
                     keyboardType="numeric"
                 />
