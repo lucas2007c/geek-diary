@@ -1,5 +1,6 @@
 import dateFormat from "../../helpers/dateFormat.js";
 import serieModel from "../../models/serieModel.js";
+import zodErrorFormat from "../../helpers/zodErrorFormat.js";
 
 const update = async (req, res) => {
     try {
