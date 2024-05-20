@@ -37,11 +37,11 @@ const SerieScreen = () => {
     const finalizados = series.filter((serie) => serie.status === 'Finalizado')
     const seeLater = series.filter((serie) => serie.status === 'Assistir_mais_tarde')
 
-    const imageUrl = 'https://w0.peakpx.com/wallpaper/877/313/HD-wallpaper-technology-games-dark-blue-high-quality-lights-luxury-premium-shiny-tech.jpg'
+    const imageUrl = 'https://e0.pxfuel.com/wallpapers/872/403/desktop-wallpaper-black-and-blue-gaming-black-and-blue-gaming-background-on-bat-mobile-gamer.jpg'
 
     return (
         <View style={{ flex: 1, backgroundColor: COLORS.secondary }}>
-            <ImageBackground source={imageUrl} style={{ paddingTop: 15, paddingLeft: 20, flex: 1 }} contentFit='fill'>
+            <ImageBackground source={require('./image.jpg')} style={{ paddingTop: 15, paddingLeft: 20, flex: 1 }} contentFit='fill'>
                 <ScrollView>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
