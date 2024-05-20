@@ -15,7 +15,7 @@ const serieSchema = z.object({
     image: z.string({
         invalid_type_error: 'A imagem deve ser uma string'
     })
-        .url('Url da imagem inválida'),
+        .url('Url da imagem inválida').or(z.literal('')),
     notes: z.string({
         invalid_type_error: 'As notas devem ser uma string'
     })
@@ -27,6 +27,7 @@ const serieSchema = z.object({
     status: z.string({
         invalid_type_error: 'O ultimp ep deve ser uma string'
     })
+        .or(z.literal(''))
 })
 
 const validateSerieToCreate = (serie) => {
