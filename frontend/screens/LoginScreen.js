@@ -32,6 +32,8 @@ const Login = () => {
                 try {
                     await AsyncStorage.setItem('userLogged', JSON.stringify({ ...data.user, token: data.token }))
                     login(data.user, data.token)
+                    setTxtEmail('')
+                    setTxtPass('')
                     navigation.navigate('app')
                 } catch (error) {
                     console.log(error)
