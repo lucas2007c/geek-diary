@@ -59,7 +59,7 @@ const SerieScreen = () => {
                         : loading ?
                             <CardLoading />
                             :
-                            <CardEmpty text='Nenhuma série cadastrada' />
+                            <CardEmpty text='Nenhuma série cadastrada' type='serie' />
                     }
 
                     <H1>Assistindo ({assistindo.length})</H1>
@@ -73,7 +73,7 @@ const SerieScreen = () => {
                         : loading ?
                             <CardLoading />
                             :
-                            <CardEmpty text='Nenhuma série sendo assistida' />
+                            <CardEmpty text='Nenhuma série sendo assistida' type='serie' />
                     }
 
                     <H1>Finalizadas ({finalizados.length})</H1>
@@ -87,7 +87,7 @@ const SerieScreen = () => {
                         : loading ?
                             <CardLoading />
                             :
-                            <CardEmpty text='Nenhuma série finalizada' />
+                            <CardEmpty text='Nenhuma série finalizada' type='serie' />
                     }
 
                     <H1>Assistir mais tarde ({seeLater.length})</H1>
@@ -101,7 +101,7 @@ const SerieScreen = () => {
                         : loading ?
                             <CardLoading />
                             :
-                            <CardEmpty text='Nenhuma série para assistir' />
+                            <CardEmpty text='Nenhuma série para assistir' type='serie' />
                     }
                 </ScrollView>
             </ImageBackground>

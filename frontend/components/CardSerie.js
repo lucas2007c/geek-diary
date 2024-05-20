@@ -13,7 +13,7 @@ const CardGame = ({ serie }) => {
                     <Image source={serie.image} style={styles.image} contentFit="cover" contentPosition='center' />
                     :
                     <View style={styles.noImage}>
-                        <MaterialCommunityIcons name="google-controller" size={50} color={COLORS.primary} />
+                        <MaterialCommunityIcons name="television" size={50} color={COLORS.primary} />
                         <Text style={{ color: '#fff', fontSize: 17, textAlign: 'center' }}>{serie.name}</Text>
                     </View>
                 }

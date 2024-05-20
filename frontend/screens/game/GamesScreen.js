@@ -1,4 +1,4 @@
-import { View, StyleSheet, ScrollView, FlatList, ActivityIndicator } from "react-native"
+import { View, StyleSheet, ScrollView, FlatList, Activityndicator } from "react-native"
 import { useState, useEffect } from "react"
 import H1 from "../../components/ui/H1"
 import axios from "axios"
@@ -59,7 +59,7 @@ const GamesScreen = () => {
                         : loading ?
                             <CardLoading />
                             :
-                            <CardEmpty text='Nenhum jogo cadastrado' />
+                            <CardEmpty text='Nenhum jogo cadastrado' type='game' />
                     }
 
                     <H1>Jogando ({jogando.length})</H1>
@@ -73,7 +73,7 @@ const GamesScreen = () => {
                         : loading ?
                             <CardLoading />
                             :
-                            <CardEmpty text='Nenhum jogo sendo jogado' />
+                            <CardEmpty text='Nenhum jogo sendo jogado' type='game' />
                     }
 
                     <H1>Zerados ({zerados.length})</H1>
@@ -87,7 +87,7 @@ const GamesScreen = () => {
                         : loading ?
                             <CardLoading />
                             :
-                            <CardEmpty text='Nenhum jogo zerado' />
+                            <CardEmpty text='Nenhum jogo zerado' type='game' />
                     }
 
                     <H1>Platinados ({platinados.length})</H1>
@@ -101,7 +101,7 @@ const GamesScreen = () => {
                         : loading ?
                             <CardLoading />
                             :
-                            <CardEmpty text='Nenhum jogo platinado' />
+                            <CardEmpty text='Nenhum jogo platinado' type='game' />
                     }
                 </ScrollView>
             </ImageBackground>

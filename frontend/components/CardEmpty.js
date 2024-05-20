@@ -2,10 +2,11 @@ import { StyleSheet, Text, View } from "react-native"
 import { COLORS } from "../constants/constants"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const CardEmpty = ({ text }) => {
+const CardEmpty = ({ text, type }) => {
     return (
         <View style={styles.container}>
-            <MaterialCommunityIcons name="google-controller-off" size={50} color={COLORS.primary} style={{ textAlign: 'center' }} />
+            <MaterialCommunityIcons
+                name={type === 'game' ? "google-controller-off" : 'television-off'} size={50} color={COLORS.primary} style={{ textAlign: 'center' }} />
             <Text style={{ color: '#fff', textAlign: 'center', fontSize: 17 }}>{text}</Text>
         </View>
     )

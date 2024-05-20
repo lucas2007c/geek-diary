@@ -72,7 +72,7 @@ const SearchScreen = () => {
                     : loading ?
                         <CardLoading />
                         :
-                        <CardEmpty text='Nenhum jogo Encontrado' />
+                        <CardEmpty text='Nenhum jogo Encontrado' type='game' />
                 }
             </View>
 
@@ -90,7 +90,7 @@ const SearchScreen = () => {
                     : loading ?
                         <CardLoading />
                         :
-                        <CardEmpty text='Nenhuma série Encontrada' />
+                        <CardEmpty text='Nenhuma série Encontrada' type='serie' />
                 }
             </View>
         </View>
