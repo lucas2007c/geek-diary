@@ -65,7 +65,7 @@ const SerieRegister = () => {
         <ScrollView style={styles.container}>
 
             <View style={styles.field}>
-                <H1 style={styles.label}>Nome do série</H1>
+                <H1 style={styles.label}>Nome da série</H1>
                 <TextInput
                     placeholder="Nome..."
                     placeholderTextColor={COLORS.secondary}
