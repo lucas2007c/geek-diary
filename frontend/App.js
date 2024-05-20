@@ -46,7 +46,7 @@ const AppNavigator = () => {
         tabBarIcon: ({ color }) => (
           <Feather name="search" size={27} color={color} />
         ),
-        title: 'Search'
+        title: 'Pesquisar'
       }} />
 
       <Tab.Screen name='saves' component={SavesScreen} options={{
@@ -54,15 +54,15 @@ const AppNavigator = () => {
         tabBarIcon: ({ color }) => (
           <Feather name="bookmark" size={27} color={color} />
         ),
-        title: 'Saves'
+        title: 'Salvos'
       }} />
 
       <Tab.Screen name='logout' component={LogoutScreen} options={{
         headerShown: false,
         tabBarIcon: ({ color }) => (
-          <Feather name="user-x" size={27} color={color} />
+          <Feather name="log-out" size={27} color={color} />
         ),
-        title: 'Logout'
+        title: 'Sair'
       }} />
     </Tab.Navigator>
   )
