@@ -1,5 +1,6 @@
 import userModel from "../../models/userModel.js";
 import zodErrorFormat from '../../helpers/zodErrorFormat.js'
+import bcrypt from 'bcrypt'
 
 const create = async (req, res) => {
     try {
@@ -9,6 +10,8 @@ const create = async (req, res) => {
         if (!result.success) {
             return res.status(400).json({ msg: 'Dados de cadastro inválidos', fields: zodErrorFormat(result.error) })
         }
+
+        data.pass = await bcrypt.hash(data.pass, 10)
 
         const user = await userModel.create(data)
         res.status(201).json({ msg: `Usuário criado com sucesso!`, user })

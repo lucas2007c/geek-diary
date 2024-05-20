@@ -30,9 +30,18 @@ const validateUserToUpdate = (user) => {
     return partialUserSchema.safeParse(user)
 }
 
+const validateUserToLogin = (user) => {
+    const partialUserSchema = userSchema.partial({ id: true })
+    return partialUserSchema.safeParse(user)
+}
+
 const getAll = async () => {
     return await prisma.users.findMany({
-        orderBy: { id: 'asc' }
+        orderBy: { id: 'asc' },
+        select: {
+            id: true,
+            email: true
+        }
     });
 }
 
@@ -40,6 +49,10 @@ const getById = async (id) => {
     return await prisma.users.findUnique({
         where: {
             id
+        },
+        select: {
+            id: true,
+            email: true
         }
     });
 }
@@ -48,13 +61,17 @@ const getByEmail = async (email) => {
     return await prisma.users.findUnique({
         where: {
             email
-        },
+        }
     });
 }
 
 const create = async (user) => {
     return await prisma.users.create({
-        data: user
+        data: user,
+        select: {
+            id: true,
+            email: true
+        }
     })
 }
 
@@ -63,7 +80,11 @@ const update = async (id, user) => {
         where: {
             id
         },
-        data: user
+        data: user,
+        select: {
+            id: true,
+            email: true
+        }
     })
 }
 
@@ -71,8 +92,12 @@ const remove = async (id) => {
     return await prisma.users.delete({
         where: {
             id
+        },
+        select: {
+            id: true,
+            email: true
         }
     })
 }
 
-export default { getAll, getById, getByEmail, create, update, remove, validateUserToCreate, validateUserToUpdate }
+export default { getAll, getById, getByEmail, create, update, remove, validateUserToCreate, validateUserToUpdate, validateUserToLogin }

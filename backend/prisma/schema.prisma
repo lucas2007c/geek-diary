@@ -40,11 +40,22 @@ model series {
 }
 
 model users {
-  id     Int      @id @default(autoincrement())
-  email  String   @db.VarChar(200)
-  pass   String   @db.Text
-  games  games[]
-  series series[]
+  id      Int       @id @default(autoincrement())
+  email   String    @unique(map: "unique-email") @db.VarChar(200)
+  pass    String    @db.Text
+  games   games[]
+  series  series[]
+  session session[]
+}
+
+model session {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  token     String   @unique @db.VarChar(1000)
+  createdAt DateTime @default(now())
+  user      users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId], name: "userId")
 }
 
 enum games_status {
