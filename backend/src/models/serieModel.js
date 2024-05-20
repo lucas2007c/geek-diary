@@ -23,7 +23,7 @@ const serieSchema = z.object({
     last_ep: z.string({
         invalid_type_error: 'O ultimp ep deve ser uma string'
     })
-        .max(50, 'O ultimo ep deve ter no máximo 50 caracteres'),
+        .max(50, 'O ultimo ep deve ter no máximo 50 caracteres').or(z.literal('')),
     status: z.string({
         invalid_type_error: 'O ultimp ep deve ser uma string'
     })
