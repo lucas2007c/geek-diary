@@ -17,13 +17,6 @@ const SearchScreen = () => {
     const [seriesFound, setSeriesFound] = useState([])
     const [loading, setLoading] = useState(false)
 
-    const lowerCaseGames = games?.map(game => {
-        return { ...game, name: game.name.toLowerCase() };
-    });
-
-    const lowerCaseSeries = series?.map(serie => {
-        return { ...serie, name: serie.name.toLowerCase() };
-    });
     const search = async () => {
         try {
             setLoading(true)
@@ -33,9 +26,8 @@ const SearchScreen = () => {
                 return setLoading(false)
             }
 
-            setGamesFound(lowerCaseGames?.filter(game => game.name.includes(txtSearch.toLowerCase())))
-            setSeriesFound(lowerCaseSeries?.filter(serie => serie.name.includes(txtSearch.toLowerCase())))
-
+            setGamesFound(games?.filter(game => game.name.toLowerCase().includes(txtSearch.toLowerCase())))
+            setSeriesFound(series?.filter(serie => serie.name.toLowerCase().includes(txtSearch.toLowerCase())))
             setLoading(false)
         } catch (error) {
             console.log(error);
