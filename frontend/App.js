@@ -11,6 +11,7 @@ import SearchScreen from './screens/SearchScreen';
 import Splash from './screens/Splash';
 import LoginScreen from './screens/LoginScreen'
 import LogoutScreen from './screens/LogoutScreen';
+import SavesScreen from './screens/SavesScreen';
 
 
 const Tab = createBottomTabNavigator()
@@ -46,6 +47,14 @@ const AppNavigator = () => {
           <Feather name="search" size={27} color={color} />
         ),
         title: 'Search'
+      }} />
+
+      <Tab.Screen name='saves' component={SavesScreen} options={{
+        headerShown: false,
+        tabBarIcon: ({ color }) => (
+          <Feather name="bookmark" size={27} color={color} />
+        ),
+        title: 'Saves'
       }} />
 
       <Tab.Screen name='logout' component={LogoutScreen} options={{
