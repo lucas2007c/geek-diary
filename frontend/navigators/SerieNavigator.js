@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 import { COLORS } from "../constants/constants"
 
-// import GameRegister from '../screens/game/GameRegister';
+import SerieRegister from '../screens/serie/SerieRegister';
 import SeriesScreen from '../screens/serie/SeriesScreen';
 import SerieEdit from '../screens/serie/SerieEdit';
 
@@ -14,14 +14,14 @@ const GameNavigator = () => {
                 headerShown: false
             }} />
 
-            {/* <Stack.Screen name="seriecadastro" component={SerieRegister} options={{
+            <Stack.Screen name="seriecadastro" component={SerieRegister} options={{
                 headerTitle: 'Cadastrar',
                 headerStyle: styles.mainTab,
                 headerTitleStyle: styles.tabLabel,
                 headerTintColor: '#fff',
                 headerTitleAlign: 'center',
                 headerShadowVisible: false
-            }} /> */}
+            }} />
 
             <Stack.Screen name="serieeditar" component={SerieEdit} options={{
                 headerTitle: 'Editar',
