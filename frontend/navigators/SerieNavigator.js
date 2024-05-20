@@ -5,7 +5,7 @@ import { COLORS } from "../constants/constants"
 
 // import GameRegister from '../screens/game/GameRegister';
 import SeriesScreen from '../screens/serie/SeriesScreen';
-// import GameEdit from '../screens/game/GameEdit';
+import SerieEdit from '../screens/serie/SerieEdit';
 
 const GameNavigator = () => {
     return (
@@ -21,7 +21,7 @@ const GameNavigator = () => {
                 headerTintColor: '#fff',
                 headerTitleAlign: 'center',
                 headerShadowVisible: false
-            }} />
+            }} /> */}
 
             <Stack.Screen name="serieeditar" component={SerieEdit} options={{
                 headerTitle: 'Editar',
@@ -30,7 +30,7 @@ const GameNavigator = () => {
                 headerTintColor: '#fff',
                 headerTitleAlign: 'center',
                 headerShadowVisible: false
-            }} /> */}
+            }} />
         </Stack.Navigator>
     )
 }

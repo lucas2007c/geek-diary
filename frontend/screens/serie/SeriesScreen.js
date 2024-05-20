@@ -2,7 +2,7 @@ import { View, StyleSheet, ScrollView, FlatList, ActivityIndicator } from "react
 import { useState, useEffect } from "react"
 import H1 from "../../components/ui/H1"
 import axios from "axios"
-import CardGame from "../../components/CardGame"
+import CardSerie from "../../components/CardSerie"
 import CardEmpty from "../../components/CardEmpty"
 import Button from "../../components/ui/Button"
 import { useNavigation } from "@react-navigation/native"
@@ -32,8 +32,8 @@ const SerieScreen = () => {
     }, [])
 
     const assistindo = series.filter((serie) => serie.status === 'Assistindo')
-    const finalizados = series.filter((serie) => serie.status === 'finalizado')
-    const seeLater = series.filter((serie) => serie.status === 'Assistir Mais Tarde')
+    const finalizados = series.filter((serie) => serie.status === 'Finalizado')
+    const seeLater = series.filter((serie) => serie.status === 'Assistir_mais_tarde')
 
     const imageUrl = 'https://w0.peakpx.com/wallpaper/877/313/HD-wallpaper-technology-games-dark-blue-high-quality-lights-luxury-premium-shiny-tech.jpg'
 
@@ -50,7 +50,7 @@ const SerieScreen = () => {
                     {series.length > 0 ?
                         <FlatList
                             data={series}
-                            renderItem={({ item }) => <CardGame game={item} />}
+                            renderItem={({ item }) => <CardSerie serie={item} />}
                             keyExtractor={item => item.id}
                             horizontal={true}
                         />
@@ -64,7 +64,7 @@ const SerieScreen = () => {
                     {assistindo.length > 0 ?
                         <FlatList
                             data={assistindo}
-                            renderItem={({ item }) => <CardGame game={item} />}
+                            renderItem={({ item }) => <CardSerie serie={item} />}
                             keyExtractor={item => item.id}
                             horizontal={true}
                         />
@@ -78,7 +78,7 @@ const SerieScreen = () => {
                     {finalizados.length > 0 ?
                         <FlatList
                             data={finalizados}
-                            renderItem={({ item }) => <CardGame game={item} />}
+                            renderItem={({ item }) => <CardSerie serie={item} />}
                             keyExtractor={item => item.id}
                             horizontal={true}
                         />
@@ -92,7 +92,7 @@ const SerieScreen = () => {
                     {seeLater.length > 0 ?
                         <FlatList
                             data={seeLater}
-                            renderItem={({ item }) => <CardGame game={item} />}
+                            renderItem={({ item }) => <CardSerie serie={item} />}
                             keyExtractor={item => item.id}
                             horizontal={true}
                         />
