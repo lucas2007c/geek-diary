@@ -10,15 +10,17 @@ import { ImageBackground } from "expo-image"
 import { COLORS } from "../../constants/constants"
 import useGameStore from "../../stores/gameStore"
 import CardLoading from "../../components/CardLoading"
+import useUserLoggedStore from "../../stores/userLoggedStore"
 
 const GamesScreen = () => {
     const { games, setGames } = useGameStore(state => state)
+    const userLoggedID = useUserLoggedStore(state => state.id)
     const [loading, setLoading] = useState(true)
     const navigation = useNavigation()
 
     const getGames = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/game')
+            const response = await axios.get(`http://localhost:3000/game/${userLoggedID}`)
             const data = response.data.games
             setGames(data);
             setLoading(false)

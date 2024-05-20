@@ -7,9 +7,11 @@ import axios from "axios"
 import { useNavigation } from "@react-navigation/native"
 import useGameStore from "../../stores/gameStore.js"
 import RadioButtonGroup, { RadioButtonItem } from "expo-radio-button";
+import useUserLoggedStore from "../../stores/userLoggedStore.js"
 
 const GameRegister = () => {
     const addGame = useGameStore(state => state.addGame)
+    const userLoggedID = useUserLoggedStore(state => state.id)
 
     const [txtName, setTxtName] = useState('')
     const [txtUrl, setTxtUrl] = useState('')
@@ -26,7 +28,7 @@ const GameRegister = () => {
             notes: txtNotes !== '' ? txtNotes : undefined,
             start: txtStart !== '' ? txtStart : undefined,
             status: txtStatus !== '' ? txtStatus : undefined,
-            users_id: 1,
+            users_id: userLoggedID,
         }
         try {
             const response = await axios.post('http://localhost:3000/game', newGame)

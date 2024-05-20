@@ -8,14 +8,15 @@ import Button from '../../components/ui/Button.js'
 import { Image } from 'expo-image'
 import axios from "axios";
 import RadioButtonGroup, { RadioButtonItem } from "expo-radio-button";
+import useUserLoggedStore from "../../stores/userLoggedStore.js";
 
 const SerieEdit = () => {
     const updateSerie = useSerieStore(state => state.updateSerie)
     const removeSerie = useSerieStore(state => state.removeSerie)
+    const userLoggedID = useUserLoggedStore(state => state.id)
     const navigation = useNavigation()
     const route = useRoute()
     const serie = route.params
-
 
     const [txtName, setTxtName] = useState(serie.name)
     const [txtUrl, setTxtUrl] = useState(!serie.image ? '' : serie.image)
@@ -35,7 +36,7 @@ const SerieEdit = () => {
             finish: txtFinish ? txtFinish : null,
             last_ep: txtLastEp,
             status: txtStatus ? txtStatus : null,
-            users_id: 1,
+            users_id: userLoggedID,
         }
 
         try {

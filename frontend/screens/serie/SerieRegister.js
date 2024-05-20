@@ -8,9 +8,11 @@ import Button from '../../components/ui/Button.js'
 import { Image } from 'expo-image'
 import axios from "axios";
 import RadioButtonGroup, { RadioButtonItem } from "expo-radio-button";
+import useUserLoggedStore from "../../stores/userLoggedStore.js";
 
 const SerieRegister = () => {
     const addSerie = useSerieStore(state => state.addSerie)
+    const userLoggedID = useUserLoggedStore(state => state.id)
     const navigation = useNavigation()
     const route = useRoute()
     const serie = route.params
@@ -33,7 +35,7 @@ const SerieRegister = () => {
             finish: txtFinish ? txtFinish : null,
             last_ep: txtLastEp,
             status: txtStatus ? txtStatus : null,
-            users_id: 1,
+            users_id: userLoggedID,
         }
 
         try {

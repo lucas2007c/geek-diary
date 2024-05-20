@@ -8,10 +8,12 @@ import Button from '../../components/ui/Button.js'
 import { Image } from 'expo-image'
 import axios from "axios";
 import RadioButtonGroup, { RadioButtonItem } from "expo-radio-button";
+import useUserLoggedStore from "../../stores/userLoggedStore.js";
 
 const GameEdit = () => {
     const updateGame = useGameStore(state => state.updateGame)
     const removeGame = useGameStore(state => state.removeGame)
+    const userLoggedID = useUserLoggedStore(state => state.id)
     const navigation = useNavigation()
     const route = useRoute()
     const game = route.params
@@ -35,7 +37,7 @@ const GameEdit = () => {
             finish: txtFinish ? txtFinish : null,
             platinum: txtPlatinum ? txtPlatinum : null,
             status: txtStatus ? txtStatus : null,
-            users_id: 1,
+            users_id: userLoggedID,
         }
 
         try {

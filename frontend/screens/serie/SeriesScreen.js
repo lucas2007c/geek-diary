@@ -10,15 +10,17 @@ import { ImageBackground } from "expo-image"
 import { COLORS } from "../../constants/constants"
 import useSerieStore from "../../stores/serieStore"
 import CardLoading from "../../components/CardLoading"
+import useUserLoggedStore from "../../stores/userLoggedStore"
 
 const SerieScreen = () => {
     const { series, setSeries } = useSerieStore(state => state)
+    const userLoggedID = useUserLoggedStore(state => state.id)
     const [loading, setLoading] = useState(true)
     const navigation = useNavigation()
 
     const getSerie = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/serie')
+            const response = await axios.get(`http://localhost:3000/serie/${userLoggedID}`)
             const data = response.data.series
             setSeries(data);
             setLoading(false)
