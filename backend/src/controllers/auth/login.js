@@ -27,7 +27,6 @@ const login = async (req, res) => {
         }
 
         //comparar se a senha informate bate com o hash salvo
-        console.log(pass, userFound);
         const passIsValid = await bcrypt.compare(pass, userFound.pass)
         if (!passIsValid) {
             return res.status(401).json({
