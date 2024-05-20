@@ -57,7 +57,7 @@ const SearchScreen = () => {
                 onChangeText={setTxtSearch}
             />
 
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 }}>
                 <H1>Jogos ({gamesFound?.length})</H1>
             </View>
 
