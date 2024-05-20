@@ -21,13 +21,13 @@ const serieSchema = z.object({
     })
         .max(1000, 'As anotações devem ter no máximo 1000 caracteres'),
     last_ep: z.string({
-        invalid_type_error: 'O ultimp ep deve ser uma string'
+        invalid_type_error: 'O ultimo ep deve ser uma string'
     })
         .max(50, 'O ultimo ep deve ter no máximo 50 caracteres').or(z.literal('')),
     status: z.string({
-        invalid_type_error: 'O ultimp ep deve ser uma string'
+        invalid_type_error: 'O status deve ser uma string'
     })
-        .or(z.literal(''))
+        .or(z.literal(null))
 })
 
 const validateSerieToCreate = (serie) => {
