@@ -8,7 +8,7 @@ import remove from '../controllers/game/remove.js';
 
 const router = express.Router();
 
-router.get('/', listAll);
+router.get('/:userID', listAll);
 router.get('/:id/:userID', getById);
 router.post('/', create);
 router.put('/:id/:userID', update);

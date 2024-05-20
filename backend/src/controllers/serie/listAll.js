@@ -2,8 +2,9 @@ import serieModel from "../../models/serieModel.js";
 import dateFormatArray from "../../helpers/dateFormatArray.js";
 
 const listAll = async (req, res) => {
+    const { userID } = req.params
     try {
-        const series = await serieModel.getAll()
+        const series = await serieModel.getAll(+userID)
         return res.json({ msg: 'Séries listadas com sucesso!', series: dateFormatArray(series) })
     } catch (error) {
         console.log(error);

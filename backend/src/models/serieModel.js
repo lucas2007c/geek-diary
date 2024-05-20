@@ -40,9 +40,12 @@ const validateSerieToUpdate = (serie) => {
     return partialSerieSchema.safeParse(serie)
 }
 
-const getAll = async () => {
+const getAll = async (users_id) => {
     return await prisma.series.findMany({
-        orderBy: { id: 'asc' }
+        orderBy: { id: 'asc' },
+        where: {
+            users_id
+        }
     });
 }
 

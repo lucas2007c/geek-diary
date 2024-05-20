@@ -36,9 +36,12 @@ const validateGameToUpdate = (game) => {
     return partialGameSchema.safeParse(game)
 }
 
-const getAll = async () => {
+const getAll = async (users_id) => {
     return await prisma.games.findMany({
-        orderBy: { id: 'asc' }
+        orderBy: { id: 'asc' },
+        where: {
+            users_id
+        }
     });
 }
 
