@@ -15,7 +15,7 @@ const MainNavigator = () => {
                 backgroundColor: COLORS.primary
             },
             tabBarActiveTintColor: COLORS.primary,
-            tabBarInactiveTintColor: '#fff',
+            tabBarInactiveTintColor: COLORS.secondary,
             swipeEnabled: false
         }}>
             <Tab.Screen name="jogos" component={GameNavigator} options={{

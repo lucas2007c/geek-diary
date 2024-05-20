@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     },
     txtinput: {
         backgroundColor: '#00334E',
-        color: '#fff',
+        color: COLORS.font,
         borderRadius: 3,
         padding: 5,
         fontSize: 25,

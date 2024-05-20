@@ -18,7 +18,7 @@ const GameNavigator = () => {
                 headerTitle: 'Cadastrar',
                 headerStyle: styles.mainTab,
                 headerTitleStyle: styles.tabLabel,
-                headerTintColor: '#fff',
+                headerTintColor: COLORS.font,
                 headerTitleAlign: 'center',
                 headerShadowVisible: false
             }} />
@@ -27,7 +27,7 @@ const GameNavigator = () => {
                 headerTitle: 'Editar',
                 headerStyle: styles.mainTab,
                 headerTitleStyle: styles.tabLabel,
-                headerTintColor: '#fff',
+                headerTintColor: COLORS.font,
                 headerTitleAlign: 'center',
                 headerShadowVisible: false
             }} />
@@ -40,11 +40,11 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.background,
     },
     tabLabel: {
-        color: '#fff',
+        color: COLORS.font,
         fontSize: 17
     },
     back: {
-        color: '#fff'
+        color: COLORS.font
     }
 })
 export default GameNavigator

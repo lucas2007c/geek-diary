@@ -14,7 +14,7 @@ const CardGame = ({ serie }) => {
                     :
                     <View style={styles.noImage}>
                         <MaterialCommunityIcons name="television" size={50} color={COLORS.primary} />
-                        <Text style={{ color: '#fff', fontSize: 17, textAlign: 'center' }}>{serie.name}</Text>
+                        <Text style={{ color: COLORS.font, fontSize: 17, textAlign: 'center' }}>{serie.name}</Text>
                     </View>
                 }
 

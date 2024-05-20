@@ -14,7 +14,7 @@ const CardGame = ({ game }) => {
                     :
                     <View style={styles.noImage}>
                         <MaterialCommunityIcons name="google-controller" size={50} color={COLORS.primary} />
-                        <Text style={{ color: '#fff', fontSize: 17, textAlign: 'center' }}>{game.name}</Text>
+                        <Text style={{ color: COLORS.font, fontSize: 17, textAlign: 'center' }}>{game.name}</Text>
                     </View>
                 }
 

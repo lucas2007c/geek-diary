@@ -1,4 +1,5 @@
 import { Text, StyleSheet } from "react-native"
+import { COLORS } from "../../constants/constants"
 
 const H1 = ({ children, style }) => {
     return (
@@ -8,7 +9,7 @@ const H1 = ({ children, style }) => {
 
 const styles = StyleSheet.create({
     title: {
-        color: '#fff',
+        color: COLORS.font,
         fontSize: 25
     }
 })

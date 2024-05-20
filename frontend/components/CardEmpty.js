@@ -7,7 +7,7 @@ const CardEmpty = ({ text, type }) => {
         <View style={styles.container}>
             <MaterialCommunityIcons
                 name={type === 'game' ? "google-controller-off" : 'television-off'} size={50} color={COLORS.primary} style={{ textAlign: 'center' }} />
-            <Text style={{ color: '#fff', textAlign: 'center', fontSize: 17 }}>{text}</Text>
+            <Text style={{ color: COLORS.font, textAlign: 'center', fontSize: 17 }}>{text}</Text>
         </View>
     )
 }
