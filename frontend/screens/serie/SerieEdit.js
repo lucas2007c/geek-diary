@@ -186,7 +186,7 @@ const SerieEdit = () => {
             </View>
 
             <View style={styles.field}>
-                <Button title='Excluir série' onPress={() => setModalVisible(true)} style={{ backgroundColor: '#f33' }} />
+                <Button title='Excluir série' onPress={() => setModalVisible(true)} style={{ backgroundColor: '#f22' }} />
             </View>
 
             <Modal
@@ -203,7 +203,7 @@ const SerieEdit = () => {
                             <Button
                                 title='Excluir'
                                 onPress={deleteSerie}
-                                style={{ backgroundColor: '#f33', marginRight: 15, padding: 10 }} />
+                                style={{ backgroundColor: '#f22', marginRight: 15, padding: 10 }} />
 
                             <Button
                                 title='Cancelar'

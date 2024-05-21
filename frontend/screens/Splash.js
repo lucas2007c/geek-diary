@@ -22,11 +22,11 @@ const Splash = () => {
                     login(user, token)
                     setTimeout(() => {
                         navigation.navigate('app')
-                    }, 2000)
+                    }, 1000)
                 } else {
                     setTimeout(() => {
                         navigation.navigate('login')
-                    }, 2000)
+                    }, 1000)
                 }
             } catch (error) {
                 console.log('Erro ao ler dado')
