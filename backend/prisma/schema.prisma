@@ -3,7 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  // provider = "mysql"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
@@ -16,7 +17,7 @@ model games {
   finish   DateTime?     @db.Date
   platinum DateTime?     @db.Date
   status   games_status?
-  saved    Boolean?      @db.TinyInt
+  saved    Boolean?
   users_id Int
   users    users         @relation(fields: [users_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_games_users")
 
@@ -33,7 +34,7 @@ model series {
   finish   DateTime?      @db.Date
   last_ep  String?        @db.VarChar(50)
   status   series_status?
-  saved    Boolean?       @db.TinyInt
+  saved    Boolean?
   users_id Int
   users    users          @relation(fields: [users_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_series_users1")
 
