@@ -73,7 +73,7 @@ const GameRegister = () => {
                 <FontAwesome name={Saved ? 'bookmark' : 'bookmark-o'} size={35} color={COLORS.font} style={{ textAlign: 'right' }} />
             </Pressable>
             <View style={styles.field}>
-                <H1 style={styles.label}>Nome do jogo</H1>
+                <H1 style={styles.label}>Nome do jogo <Text style={styles.span}>- Único campo obrigatório</Text> </H1>
                 <TextInput
                     placeholder="Nome..."
                     placeholderTextColor={COLORS.secondary}
@@ -198,6 +198,10 @@ const styles = StyleSheet.create({
     },
     field: {
         marginVertical: 10
+    },
+    span: {
+        fontSize: 14,
+        color: COLORS.primary
     }
 })
 

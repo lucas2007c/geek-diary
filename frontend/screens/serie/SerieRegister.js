@@ -73,7 +73,7 @@ const SerieRegister = () => {
                 <FontAwesome name={Saved ? 'bookmark' : 'bookmark-o'} size={35} color={COLORS.font} style={{ textAlign: 'right' }} />
             </Pressable>
             <View style={styles.field}>
-                <H1 style={styles.label}>Nome da série</H1>
+                <H1 style={styles.label}>Nome da série <Text style={styles.span}>- Único campo obrigatório</Text></H1>
                 <TextInput
                     placeholder="Nome..."
                     placeholderTextColor={COLORS.secondary}
@@ -215,6 +215,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: COLORS.secondary,
+    },
+    span: {
+        fontSize: 14,
+        color: COLORS.primary
     }
 })
 
