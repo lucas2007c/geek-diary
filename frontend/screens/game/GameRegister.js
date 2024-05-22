@@ -46,13 +46,11 @@ const GameRegister = () => {
             let fieldsErros = ''
             if (error?.response?.data?.fields) {
                 for (let field in error.response.data.fields) {
-                    fieldsErros += field[0] + '\n'
+                    fieldsErros += error.response.data.fields[field] + '\n'
                 }
-                fieldsErros = error?.response?.data?.fields?.image
             }
 
             alert(`${error.response.data.msg} \n` + fieldsErros);
-            console.log(error.response.data);
         }
     }
 
