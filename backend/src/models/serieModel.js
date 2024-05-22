@@ -27,16 +27,19 @@ const serieSchema = z.object({
     status: z.string({
         invalid_type_error: 'O status deve ser uma string'
     })
-        .or(z.literal(null))
+        .or(z.literal(null)),
+    saved: z.boolean({
+        invalid_type_error: 'O saved deve ser um booleano'
+    })
 })
 
 const validateSerieToCreate = (serie) => {
-    const partialSerieSchema = serieSchema.partial({ id: true, image: true, notes: true, last_ep: true, status: true })
+    const partialSerieSchema = serieSchema.partial({ id: true, image: true, notes: true, last_ep: true, status: true, saved: true })
     return partialSerieSchema.safeParse(serie)
 }
 
 const validateSerieToUpdate = (serie) => {
-    const partialSerieSchema = serieSchema.partial({ id: true, name: true, image: true, notes: true, last_ep: true, status: true })
+    const partialSerieSchema = serieSchema.partial({ id: true, name: true, image: true, notes: true, last_ep: true, status: true, saved: true })
     return partialSerieSchema.safeParse(serie)
 }
 

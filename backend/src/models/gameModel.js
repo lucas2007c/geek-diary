@@ -23,16 +23,19 @@ const gameSchema = z.object({
     status: z.string({
         invalid_type_error: 'O status deve ser uma string'
     })
-        .or(z.literal(null))
+        .or(z.literal(null)),
+    saved: z.boolean({
+        invalid_type_error: 'O saved deve ser um booleano'
+    })
 })
 
 const validateGameToCreate = (game) => {
-    const partialGameSchema = gameSchema.partial({ id: true, image: true, notes: true, status: true })
+    const partialGameSchema = gameSchema.partial({ id: true, image: true, notes: true, status: true, saved: true })
     return partialGameSchema.safeParse(game)
 }
 
 const validateGameToUpdate = (game) => {
-    const partialGameSchema = gameSchema.partial({ id: true, name: true, image: true, notes: true, status: true })
+    const partialGameSchema = gameSchema.partial({ id: true, name: true, image: true, notes: true, status: true, saved: true })
     return partialGameSchema.safeParse(game)
 }
 
