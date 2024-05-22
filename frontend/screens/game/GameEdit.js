@@ -1,4 +1,4 @@
-import { View, TextInput, StyleSheet, ScrollView, Modal, Text } from "react-native"
+import { View, TextInput, StyleSheet, ScrollView, Modal, Text, Pressable } from "react-native"
 import { COLORS } from "../../constants/constants"
 import { useNavigation, useRoute } from '@react-navigation/native';
 import useGameStore from '../../stores/gameStore.js'
@@ -9,6 +9,7 @@ import { Image } from 'expo-image'
 import axios from "axios";
 import RadioButtonGroup, { RadioButtonItem } from "expo-radio-button";
 import useUserLoggedStore from "../../stores/userLoggedStore.js";
+import { FontAwesome } from '@expo/vector-icons'
 
 const GameEdit = () => {
     const updateGame = useGameStore(state => state.updateGame)
@@ -26,6 +27,7 @@ const GameEdit = () => {
     const [txtPlatinum, setTxtPlatinum] = useState(!game.platinum ? '' : game.platinum)
     const [txtStatus, setTxtStatus] = useState(!game.status ? '' : game.status)
     const [txtNotes, setTxtNotes] = useState(!game.notes ? '' : game.notes)
+    const [Saved, setSaved] = useState(game?.saved)
     const [modalVisible, setModalVisible] = useState(false)
 
     const putGame = async () => {
@@ -37,6 +39,7 @@ const GameEdit = () => {
             finish: txtFinish ? txtFinish : null,
             platinum: txtPlatinum ? txtPlatinum : null,
             status: txtStatus ? txtStatus : null,
+            saved: Saved,
             users_id: userLoggedID,
         }
 
@@ -82,17 +85,27 @@ const GameEdit = () => {
         return value;
     }
 
+    const handleSaved = () => {
+        setSaved(Saved ? false : true)
+    }
+
     return (
         <ScrollView style={styles.container}>
 
-            <TextInput
-                placeholder="Nome..."
-                placeholderTextColor={COLORS.secondary}
-                style={[styles.txtinput, styles.title]}
-                value={txtName}
-                onChangeText={setTxtName}
-                maxLength={200}
-            />
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <TextInput
+                    placeholder="Nome..."
+                    placeholderTextColor={COLORS.secondary}
+                    style={[styles.txtinput, styles.title]}
+                    value={txtName}
+                    onChangeText={setTxtName}
+                    maxLength={200}
+                />
+
+                <Pressable onPress={handleSaved}>
+                    <FontAwesome name={Saved ? 'bookmark' : 'bookmark-o'} size={30} color={COLORS.font} />
+                </Pressable>
+            </View>
 
             <View style={styles.field}>
                 <Image source={game.image} style={styles.gameImage} contentFit="contain" />
@@ -227,7 +240,8 @@ const styles = StyleSheet.create({
     title: {
         textAlign: 'center',
         fontSize: 25,
-        backgroundColor: COLORS.background
+        backgroundColor: COLORS.background,
+        marginRight: 10
     },
     label: {
         fontSize: 20,

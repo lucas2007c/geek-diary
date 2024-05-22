@@ -1,4 +1,4 @@
-import { View, TextInput, StyleSheet, ScrollView, Modal, Text } from "react-native"
+import { View, TextInput, StyleSheet, ScrollView, Modal, Text, Pressable } from "react-native"
 import { COLORS } from "../../constants/constants"
 import { useNavigation, useRoute } from '@react-navigation/native';
 import useSerieStore from '../../stores/serieStore.js'
@@ -9,6 +9,7 @@ import { Image } from 'expo-image'
 import axios from "axios";
 import RadioButtonGroup, { RadioButtonItem } from "expo-radio-button";
 import useUserLoggedStore from "../../stores/userLoggedStore.js";
+import { FontAwesome } from '@expo/vector-icons'
 
 const SerieEdit = () => {
     const updateSerie = useSerieStore(state => state.updateSerie)
@@ -25,6 +26,7 @@ const SerieEdit = () => {
     const [txtLastEp, setTxtLastEp] = useState(!serie.last_ep ? '' : serie.last_ep)
     const [txtStatus, setTxtStatus] = useState(!serie.status ? '' : serie.status)
     const [txtNotes, setTxtNotes] = useState(!serie.notes ? '' : serie.notes)
+    const [Saved, setSaved] = useState(serie?.saved)
     const [modalVisible, setModalVisible] = useState(false)
 
     const putSerie = async () => {
@@ -36,6 +38,7 @@ const SerieEdit = () => {
             finish: txtFinish ? txtFinish : null,
             last_ep: txtLastEp,
             status: txtStatus ? txtStatus : null,
+            saved: Saved,
             users_id: userLoggedID,
         }
 
@@ -81,17 +84,26 @@ const SerieEdit = () => {
         return value;
     }
 
+    const handleSaved = () => {
+        setSaved(Saved ? false : true)
+    }
+
     return (
         <ScrollView style={styles.container}>
 
-            <TextInput
-                placeholder="Nome..."
-                placeholderTextColor={COLORS.secondary}
-                style={[styles.txtinput, styles.title]}
-                value={txtName}
-                onChangeText={setTxtName}
-                maxLength={200}
-            />
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <TextInput
+                    placeholder="Nome..."
+                    placeholderTextColor={COLORS.secondary}
+                    style={[styles.txtinput, styles.title]}
+                    value={txtName}
+                    onChangeText={setTxtName}
+                    maxLength={200}
+                />
+                <Pressable onPress={handleSaved}>
+                    <FontAwesome name={Saved ? 'bookmark' : 'bookmark-o'} size={30} color={COLORS.font} />
+                </Pressable>
+            </View>
 
             <View style={styles.field}>
                 <Image source={serie.image} style={styles.gameImage} contentFit="contain" />

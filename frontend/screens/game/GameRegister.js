@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native"
+import { View, Text, StyleSheet, TextInput, ScrollView, Pressable } from "react-native"
 import H1 from '../../components/ui/H1.js'
 import { COLORS } from "../../constants/constants.js"
 import { useState } from "react"
@@ -8,6 +8,7 @@ import { useNavigation } from "@react-navigation/native"
 import useGameStore from "../../stores/gameStore.js"
 import RadioButtonGroup, { RadioButtonItem } from "expo-radio-button";
 import useUserLoggedStore from "../../stores/userLoggedStore.js"
+import { FontAwesome } from "@expo/vector-icons"
 
 const GameRegister = () => {
     const addGame = useGameStore(state => state.addGame)
@@ -19,6 +20,7 @@ const GameRegister = () => {
     const [txtFinish, setTxtFinish] = useState('')
     const [txtPlatinum, setTxtPlatinum] = useState('')
     const [txtStatus, setTxtStatus] = useState('')
+    const [Saved, setSaved] = useState(false)
     const [txtNotes, setTxtNotes] = useState('')
 
     const navigation = useNavigation()
@@ -32,6 +34,7 @@ const GameRegister = () => {
             finish: txtFinish !== '' ? txtFinish : undefined,
             platinum: txtPlatinum !== '' ? txtPlatinum : undefined,
             status: txtStatus !== '' ? txtStatus : undefined,
+            saved: Saved,
             users_id: userLoggedID,
         }
 
@@ -60,8 +63,15 @@ const GameRegister = () => {
         return value;
     }
 
+    const handleSaved = () => {
+        setSaved(Saved ? false : true)
+    }
+
     return (
         <ScrollView style={styles.container}>
+            <Pressable onPress={handleSaved}>
+                <FontAwesome name={Saved ? 'bookmark' : 'bookmark-o'} size={30} color={COLORS.font} style={{ textAlign: 'right' }} />
+            </Pressable>
             <View style={styles.field}>
                 <H1 style={styles.label}>Nome do jogo</H1>
                 <TextInput
@@ -180,7 +190,6 @@ const styles = StyleSheet.create({
     txtinput: {
         backgroundColor: '#00334E',
         color: COLORS.font,
-        // height: 30,
         borderRadius: 3,
         padding: 5,
         fontSize: 17
