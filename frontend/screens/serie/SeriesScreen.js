@@ -45,8 +45,8 @@ const SerieScreen = () => {
                 <ScrollView>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <H1>Todas as séries ({series.length})</H1>
-                        <Button title='Novo' style={{ marginRight: 50 }} onPress={() => navigation.navigate('seriecadastro')} />
+                        <H1>Todas As Séries ({series.length})</H1>
+                        <Button title='Nova' style={{ marginRight: 50 }} onPress={() => navigation.navigate('seriecadastro')} />
                     </View>
 
                     {series.length > 0 ?
