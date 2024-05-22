@@ -122,41 +122,45 @@ const GameEdit = () => {
                 />
             </View>
 
-            <View style={styles.field}>
-                <H1 style={styles.label}>ínicio</H1>
-                <TextInput
-                    placeholder="DD/MM/YYYY"
-                    placeholderTextColor={COLORS.secondary}
-                    style={styles.txtinput}
-                    value={txtStart}
-                    onChangeText={(value) => setTxtStart(dateFormat(value))}
-                    maxLength={10}
-                    keyboardType="numeric"
-                />
-            </View>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                <View style={styles.field}>
+                    <H1 style={styles.label}>Ínicio</H1>
+                    <TextInput
+                        placeholder="dd/mm/yyyy"
+                        placeholderTextColor={COLORS.secondary}
+                        style={[styles.txtinput, { alignSelf: 'flex-start' }]}
+                        value={txtStart}
+                        onChangeText={(value) => setTxtStart(dateFormat(value))}
+                        maxLength={10}
+                        keyboardType="numeric"
+                    />
+                </View>
 
-            <View style={styles.field}>
-                <H1 style={styles.label}>Zerado</H1>
-                <TextInput
-                    placeholder="DD/MM/YYYY"
-                    placeholderTextColor={COLORS.secondary}
-                    style={styles.txtinput}
-                    value={txtFinish}
-                    onChangeText={(value) => setTxtFinish(dateFormat(value))}
-                    maxLength={10}
-                />
-            </View>
+                <View style={styles.field}>
+                    <H1 style={styles.label}>Zerado</H1>
+                    <TextInput
+                        placeholder="dd/mm/yyyy"
+                        placeholderTextColor={COLORS.secondary}
+                        style={[styles.txtinput, { alignSelf: 'flex-start' }]}
+                        value={txtFinish}
+                        onChangeText={(value) => setTxtFinish(dateFormat(value))}
+                        maxLength={10}
+                        keyboardType="numeric"
+                    />
+                </View>
 
-            <View style={styles.field}>
-                <H1 style={styles.label}>Platinado</H1>
-                <TextInput
-                    placeholder="DD/MM/YYYY"
-                    placeholderTextColor={COLORS.secondary}
-                    style={styles.txtinput}
-                    value={txtPlatinum}
-                    onChangeText={(value) => setTxtPlatinum(dateFormat(value))}
-                    maxLength={10}
-                />
+                <View style={styles.field}>
+                    <H1 style={styles.label}>Platinado</H1>
+                    <TextInput
+                        placeholder="dd/mm/yyyy"
+                        placeholderTextColor={COLORS.secondary}
+                        style={[styles.txtinput, { alignSelf: 'flex-start' }]}
+                        value={txtPlatinum}
+                        onChangeText={(value) => setTxtPlatinum(dateFormat(value))}
+                        maxLength={10}
+                        keyboardType="numeric"
+                    />
+                </View>
             </View>
 
             <View style={styles.field}>
@@ -185,7 +189,7 @@ const GameEdit = () => {
             <View style={[styles.field]}>
                 <H1 style={styles.label}>Anotações {!txtNotes?.length ? 0 : txtNotes.length}/1000</H1>
                 <TextInput
-                    style={[styles.txtinput, { height: 500, color: COLORS.font, fontSize: 20, AlignVertical: 'top' }]}
+                    style={[styles.txtinput, { height: 500, color: COLORS.font, fontSize: 20, textAlignVertical: 'top' }]}
                     placeholder="Anote o que quiser..."
                     placeholderTextColor={COLORS.secondary}
                     multiline
@@ -235,7 +239,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLORS.background,
-        paddingHorizontal: 25
+        paddingHorizontal: 20
     },
     title: {
         textAlign: 'center',

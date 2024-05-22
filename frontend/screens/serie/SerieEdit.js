@@ -93,7 +93,7 @@ const SerieEdit = () => {
     return (
         <ScrollView style={styles.container}>
             <Pressable onPress={handleSaved} style={{ alignSelf: 'flex-end' }}>
-                <FontAwesome name={Saved ? 'bookmark' : 'bookmark-o'} size={30} color={COLORS.font} />
+                <FontAwesome name={Saved ? 'bookmark' : 'bookmark-o'} size={35} color={COLORS.font} />
             </Pressable>
 
             <TextInput
@@ -123,9 +123,9 @@ const SerieEdit = () => {
             <View style={styles.field}>
                 <H1 style={styles.label}>ínicio</H1>
                 <TextInput
-                    placeholder="DD/MM/YYYY"
+                    placeholder="dd/mm/yyyy"
                     placeholderTextColor={COLORS.secondary}
-                    style={styles.txtinput}
+                    style={[styles.txtinput, { alignSelf: 'flex-start' }]}
                     value={txtStart}
                     onChangeText={(value) => setTxtStart(dateFormat(value))}
                     maxLength={10}
@@ -136,9 +136,9 @@ const SerieEdit = () => {
             <View style={styles.field}>
                 <H1 style={styles.label}>Finalizado</H1>
                 <TextInput
-                    placeholder="DD/MM/YYYY"
+                    placeholder="dd/mm/yyyy"
                     placeholderTextColor={COLORS.secondary}
-                    style={styles.txtinput}
+                    style={[styles.txtinput, { alignSelf: 'flex-start' }]}
                     value={txtFinish}
                     onChangeText={(value) => setTxtFinish(dateFormat(value))}
                     maxLength={10}
@@ -183,7 +183,7 @@ const SerieEdit = () => {
             <View style={[styles.field]}>
                 <H1 style={styles.label}>Anotações {!txtNotes?.length ? 0 : txtNotes.length}/1000</H1>
                 <TextInput
-                    style={[styles.txtinput, { height: 500, color: COLORS.font, fontSize: 20, AlignVertical: 'top' }]}
+                    style={[styles.txtinput, { height: 500, color: COLORS.font, fontSize: 20, textAlignVertical: 'top' }]}
                     placeholder="Anote o que quiser..."
                     placeholderTextColor={COLORS.secondary}
                     multiline
@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLORS.background,
-        paddingHorizontal: 25
+        paddingHorizontal: 20
     },
     title: {
         textAlign: 'center',
