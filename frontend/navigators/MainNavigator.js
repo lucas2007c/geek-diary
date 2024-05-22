@@ -36,7 +36,6 @@ const MainNavigator = () => {
 const styles = StyleSheet.create({
     mainTab: {
         backgroundColor: COLORS.background,
-        paddingTop: 40,
     },
     tabLabel: {
         textTransform: 'none',

@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Feather } from '@expo/vector-icons';
 import { COLORS } from "./constants/constants"
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 //Screens
 import MainNavigator from './navigators/MainNavigator';
@@ -19,52 +20,55 @@ const Stack = createNativeStackNavigator()
 
 const AppNavigator = () => {
   return (
-    <Tab.Navigator screenOptions={{
-      tabBarStyle: {
-        backgroundColor: COLORS.background,
-        borderColor: COLORS.primary,
-        height: 60,
-        padding: 5
-      },
-      tabBarActiveTintColor: COLORS.primary,
-      tabBarInactiveTintColor: COLORS.secondary,
-      tabBarLabelStyle: {
-        fontSize: 15
-      }
-    }}>
+    <SafeAreaView style={{ flex: 1 }}>
 
-      <Tab.Screen name='home' component={MainNavigator} options={{
-        headerShown: false,
-        tabBarIcon: ({ color }) => (
-          <Feather name="home" size={27} color={color} />
-        ),
-        title: 'Home'
-      }} />
+      <Tab.Navigator screenOptions={{
+        tabBarStyle: {
+          backgroundColor: COLORS.background,
+          borderColor: COLORS.primary,
+          height: 60,
+          padding: 5
+        },
+        tabBarActiveTintColor: COLORS.primary,
+        tabBarInactiveTintColor: COLORS.secondary,
+        tabBarLabelStyle: {
+          fontSize: 15
+        }
+      }}>
 
-      <Tab.Screen name='search' component={SearchScreen} options={{
-        headerShown: false,
-        tabBarIcon: ({ color }) => (
-          <Feather name="search" size={27} color={color} />
-        ),
-        title: 'Pesquisar'
-      }} />
+        <Tab.Screen name='home' component={MainNavigator} options={{
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <Feather name="home" size={27} color={color} />
+          ),
+          title: 'Home'
+        }} />
 
-      <Tab.Screen name='saves' component={SavesScreen} options={{
-        headerShown: false,
-        tabBarIcon: ({ color }) => (
-          <Feather name="bookmark" size={27} color={color} />
-        ),
-        title: 'Salvos'
-      }} />
+        <Tab.Screen name='search' component={SearchScreen} options={{
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <Feather name="search" size={27} color={color} />
+          ),
+          title: 'Pesquisar'
+        }} />
 
-      <Tab.Screen name='logout' component={LogoutScreen} options={{
-        headerShown: false,
-        tabBarIcon: ({ color }) => (
-          <Feather name="log-out" size={27} color={color} />
-        ),
-        title: 'Sair'
-      }} />
-    </Tab.Navigator>
+        <Tab.Screen name='saves' component={SavesScreen} options={{
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <Feather name="bookmark" size={27} color={color} />
+          ),
+          title: 'Salvos'
+        }} />
+
+        <Tab.Screen name='logout' component={LogoutScreen} options={{
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <Feather name="log-out" size={27} color={color} />
+          ),
+          title: 'Sair'
+        }} />
+      </Tab.Navigator>
+    </SafeAreaView>
   )
 }
 
