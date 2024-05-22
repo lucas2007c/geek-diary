@@ -92,20 +92,18 @@ const SerieEdit = () => {
 
     return (
         <ScrollView style={styles.container}>
+            <Pressable onPress={handleSaved} style={{ alignSelf: 'flex-end' }}>
+                <FontAwesome name={Saved ? 'bookmark' : 'bookmark-o'} size={30} color={COLORS.font} />
+            </Pressable>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <TextInput
-                    placeholder="Nome..."
-                    placeholderTextColor={COLORS.secondary}
-                    style={[styles.txtinput, styles.title]}
-                    value={txtName}
-                    onChangeText={setTxtName}
-                    maxLength={200}
-                />
-                <Pressable onPress={handleSaved}>
-                    <FontAwesome name={Saved ? 'bookmark' : 'bookmark-o'} size={30} color={COLORS.font} />
-                </Pressable>
-            </View>
+            <TextInput
+                placeholder="Nome..."
+                placeholderTextColor={COLORS.secondary}
+                style={[styles.txtinput, styles.title]}
+                value={txtName}
+                onChangeText={setTxtName}
+                maxLength={200}
+            />
 
             <View style={styles.field}>
                 <Image source={serie.image} style={styles.gameImage} contentFit="contain" />

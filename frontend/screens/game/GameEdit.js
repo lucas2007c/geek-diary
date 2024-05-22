@@ -93,21 +93,19 @@ const GameEdit = () => {
 
     return (
         <ScrollView style={styles.container}>
+            <Pressable onPress={handleSaved} style={{ alignSelf: 'flex-end' }}>
+                <FontAwesome name={Saved ? 'bookmark' : 'bookmark-o'} size={35} color={COLORS.font} />
+            </Pressable>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <TextInput
-                    placeholder="Nome..."
-                    placeholderTextColor={COLORS.secondary}
-                    style={[styles.txtinput, styles.title]}
-                    value={txtName}
-                    onChangeText={setTxtName}
-                    maxLength={200}
-                />
+            <TextInput
+                placeholder="Nome..."
+                placeholderTextColor={COLORS.secondary}
+                style={[styles.txtinput, styles.title]}
+                value={txtName}
+                onChangeText={setTxtName}
+                maxLength={200}
+            />
 
-                <Pressable onPress={handleSaved}>
-                    <FontAwesome name={Saved ? 'bookmark' : 'bookmark-o'} size={30} color={COLORS.font} />
-                </Pressable>
-            </View>
 
             <View style={styles.field}>
                 <Image source={game.image} style={styles.gameImage} contentFit="contain" />
@@ -242,8 +240,7 @@ const styles = StyleSheet.create({
     title: {
         textAlign: 'center',
         fontSize: 25,
-        backgroundColor: COLORS.background,
-        marginRight: 10
+        backgroundColor: COLORS.background
     },
     label: {
         fontSize: 20,
