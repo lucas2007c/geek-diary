@@ -158,7 +158,7 @@ const SerieRegister = () => {
             <View style={[styles.field]}>
                 <H1 style={styles.label}>Anotações {!txtNotes?.length ? 0 : txtNotes.length}/1000</H1>
                 <TextInput
-                    style={[styles.txtinput, { height: 500, color: COLORS.font, fontSize: 20, AlignVertical: 'top' }]}
+                    style={[styles.txtinput, { height: 500, color: COLORS.font, fontSize: 20, textAlignVertical: 'top' }]}
                     placeholder="Anote o que quiser..."
                     placeholderTextColor={COLORS.secondary}
                     multiline
