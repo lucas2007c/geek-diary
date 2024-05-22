@@ -11,6 +11,8 @@ import { COLORS } from "../../constants/constants"
 import useSerieStore from "../../stores/serieStore"
 import CardLoading from "../../components/CardLoading"
 import useUserLoggedStore from "../../stores/userLoggedStore"
+import { API_URL } from '../../constants/constants.js'
+
 
 const SerieScreen = () => {
     const { series, setSeries } = useSerieStore(state => state)
@@ -20,7 +22,7 @@ const SerieScreen = () => {
 
     const getSerie = async () => {
         try {
-            const response = await axios.get(`http://localhost:3000/serie/${userLoggedID}`)
+            const response = await axios.get(`${API_URL}/serie/${userLoggedID}`)
             const data = response.data.series
             setSeries(data);
             setLoading(false)

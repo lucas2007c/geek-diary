@@ -4,3 +4,5 @@ export const COLORS = {
     background: '#242A32',
     font: '#fff'
 }
+
+export const API_URL = 'https://projeto-react-native.onrender.com'

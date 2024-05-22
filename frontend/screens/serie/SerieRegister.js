@@ -9,6 +9,8 @@ import axios from "axios";
 import RadioButtonGroup, { RadioButtonItem } from "expo-radio-button";
 import useUserLoggedStore from "../../stores/userLoggedStore.js";
 import { FontAwesome } from "@expo/vector-icons"
+import { API_URL } from '../../constants/constants.js'
+
 
 const SerieRegister = () => {
     const addSerie = useSerieStore(state => state.addSerie)
@@ -39,7 +41,7 @@ const SerieRegister = () => {
         }
 
         try {
-            const response = await axios.post(`http://localhost:3000/serie`, newSerie)
+            const response = await axios.post(`${API_URL}/serie`, newSerie)
             addSerie(response.data.serie)
             navigation.navigate('serieslist')
         } catch (error) {

@@ -9,6 +9,8 @@ import useGameStore from "../../stores/gameStore.js"
 import RadioButtonGroup, { RadioButtonItem } from "expo-radio-button";
 import useUserLoggedStore from "../../stores/userLoggedStore.js"
 import { FontAwesome } from "@expo/vector-icons"
+import { API_URL } from '../../constants/constants.js'
+
 
 const GameRegister = () => {
     const addGame = useGameStore(state => state.addGame)
@@ -39,7 +41,7 @@ const GameRegister = () => {
         }
 
         try {
-            const response = await axios.post('http://localhost:3000/game', newGame)
+            const response = await axios.post(`${API_URL}/game`, newGame)
             addGame(response.data.game)
             navigation.navigate('jogoslist')
         } catch (error) {

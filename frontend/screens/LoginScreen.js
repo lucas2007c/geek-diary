@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import useUserLoggedStore from '../stores/userLoggedStore.js'
 import { COLORS } from '../constants/constants.js'
 import axios from 'axios'
+import { API_URL } from '../constants/constants.js'
 
 
 const Login = () => {
@@ -19,7 +20,7 @@ const Login = () => {
 
     const handleLogin = async () => {
         try {
-            const response = await fetch('http://localhost:3000/auth/login', {
+            const response = await fetch(`${API_URL}/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -56,7 +57,7 @@ const Login = () => {
         }
 
         try {
-            await axios.post(`http://localhost:3000/user`, newUser)
+            await axios.post(`${API_URL}/user`, newUser)
             setModalVisible(true)
         } catch (error) {
             let fieldsErros = ''

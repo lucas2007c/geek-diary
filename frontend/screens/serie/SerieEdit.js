@@ -10,6 +10,8 @@ import axios from "axios";
 import RadioButtonGroup, { RadioButtonItem } from "expo-radio-button";
 import useUserLoggedStore from "../../stores/userLoggedStore.js";
 import { FontAwesome } from '@expo/vector-icons'
+import { API_URL } from '../../constants/constants.js'
+
 
 const SerieEdit = () => {
     const updateSerie = useSerieStore(state => state.updateSerie)
@@ -43,7 +45,7 @@ const SerieEdit = () => {
         }
 
         try {
-            const response = await axios.put(`http://localhost:3000/serie/${serie.id}/${serie.users_id}`, newSerie)
+            const response = await axios.put(`${API_URL}/serie/${serie.id}/${serie.users_id}`, newSerie)
             updateSerie(serie.id, serie.users_id, response.data.serie)
             navigation.navigate('serieslist')
         } catch (error) {
@@ -60,7 +62,7 @@ const SerieEdit = () => {
 
     const deleteSerie = async () => {
         try {
-            const response = await axios.delete(`http://localhost:3000/serie/${serie.id}/${serie.users_id}`)
+            const response = await axios.delete(`${API_URL}/serie/${serie.id}/${serie.users_id}`)
             removeSerie(serie.id, serie.users_id)
             navigation.navigate('serieslist')
         } catch (error) {

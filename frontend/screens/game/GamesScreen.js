@@ -11,6 +11,8 @@ import { COLORS } from "../../constants/constants"
 import useGameStore from "../../stores/gameStore"
 import CardLoading from "../../components/CardLoading"
 import useUserLoggedStore from "../../stores/userLoggedStore"
+import { API_URL } from '../../constants/constants.js'
+
 
 const GamesScreen = () => {
     const { games, setGames } = useGameStore(state => state)
@@ -20,7 +22,7 @@ const GamesScreen = () => {
 
     const getGames = async () => {
         try {
-            const response = await axios.get(`http://localhost:3000/game/${userLoggedID}`)
+            const response = await axios.get(`${API_URL}/game/${userLoggedID}`)
             const data = response.data.games
             setGames(data);
             setLoading(false)

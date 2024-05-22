@@ -10,6 +10,8 @@ import axios from "axios";
 import RadioButtonGroup, { RadioButtonItem } from "expo-radio-button";
 import useUserLoggedStore from "../../stores/userLoggedStore.js";
 import { FontAwesome } from '@expo/vector-icons'
+import { API_URL } from '../../constants/constants.js'
+
 
 const GameEdit = () => {
     const updateGame = useGameStore(state => state.updateGame)
@@ -44,7 +46,7 @@ const GameEdit = () => {
         }
 
         try {
-            const response = await axios.put(`http://localhost:3000/game/${game.id}/${game.users_id}`, newGame)
+            const response = await axios.put(`${API_URL}/game/${game.id}/${game.users_id}`, newGame)
             updateGame(game.id, game.users_id, response.data.game)
             navigation.navigate('jogoslist')
         } catch (error) {
@@ -61,7 +63,7 @@ const GameEdit = () => {
 
     const deleteGame = async () => {
         try {
-            const response = await axios.delete(`http://localhost:3000/game/${game.id}/${game.users_id}`)
+            const response = await axios.delete(`${API_URL}/game/${game.id}/${game.users_id}`)
             removeGame(game.id, game.users_id)
             navigation.navigate('jogoslist')
         } catch (error) {
