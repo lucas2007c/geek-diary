@@ -11,6 +11,7 @@ const serieSchema = z.object({
         required_error: 'O nome é obrigatório',
         invalid_type_error: 'O nome deve ser uma string'
     })
+        .min(1, 'O nome é obrigatório')
         .max(200, 'O nome deve ter no máximo 200 caracteres'),
     image: z.string({
         invalid_type_error: 'A imagem deve ser uma string'
