@@ -87,8 +87,14 @@ const GameEdit = () => {
         return value;
     }
 
-    const handleSaved = () => {
-        setSaved(Saved ? false : true)
+    const handleSaved = async () => {
+        setSaved(!Saved)
+        try {
+            const response = await axios.put(`${API_URL}/game/${game.id}/${game.users_id}`, { saved: !Saved })
+            updateGame(game.id, game.users_id, response.data.game)
+        } catch (error) {
+            alert('Erro ao salvar jogo')
+        }
     }
 
     return (
@@ -216,12 +222,12 @@ const GameEdit = () => {
                 }}>
                 <View style={styles.centeredView}>
                     <View style={styles.modalContainer}>
-                        <H1 style={{ fontSize: 20 }}> Deseja excluir este jogo?</H1>
-                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
+                        <H1 style={{ fontSize: 20 }}> Deseja excluir {txtName}?</H1>
+                        <View style={{ flexDirection: 'row', marginTop: 25 }}>
                             <Button
                                 title='Excluir'
                                 onPress={deleteGame}
-                                style={{ backgroundColor: '#f22', marginRight: 15, padding: 10 }} />
+                                style={{ backgroundColor: '#f22', marginRight: 30 }} />
 
                             <Button
                                 title='Cancelar'
@@ -274,7 +280,9 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.secondary,
+        backgroundColor: COLORS.background,
+        borderColor: COLORS.primary,
+        borderWidth: 1
     }
 })
 

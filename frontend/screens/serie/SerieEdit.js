@@ -86,8 +86,14 @@ const SerieEdit = () => {
         return value;
     }
 
-    const handleSaved = () => {
-        setSaved(Saved ? false : true)
+    const handleSaved = async () => {
+        setSaved(!Saved)
+        try {
+            const response = await axios.put(`${API_URL}/serie/${serie.id}/${serie.users_id}`, { saved: !Saved })
+            updateSerie(serie.id, serie.users_id, response.data.serie)
+        } catch (error) {
+            alert('Erro ao salvar série')
+        }
     }
 
     return (
