@@ -8,6 +8,7 @@ import useGameStore from '../stores/gameStore'
 import useSerieStore from '../stores/serieStore'
 import CardLoading from "../components/CardLoading"
 import H1 from "../components/ui/H1"
+import { ImageBackground } from "expo-image"
 
 const SavesScreen = () => {
     const games = useGameStore(state => state.games)
@@ -35,42 +36,44 @@ const SavesScreen = () => {
 
     return (
         <View style={styles.container}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 }}>
-                <H1>Jogos ({gamesSaved?.length})</H1>
-            </View>
+            <ImageBackground source={require('./serie/image.jpg')} style={{ padding: 20, flex: 1 }} contentFit='fill'>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 }}>
+                    <H1>Jogos ({gamesSaved?.length})</H1>
+                </View>
 
-            <View>
-                {gamesSaved?.length > 0 ?
-                    <FlatList
-                        data={gamesSaved}
-                        renderItem={({ item }) => <CardGame game={item} />}
-                        keyExtractor={item => item.id}
-                        horizontal={true}
-                    />
-                    : loading ?
-                        <CardLoading />
-                        :
-                        <CardEmpty text='Nenhum jogo salvo' type='game' />
-                }
-            </View>
+                <View>
+                    {gamesSaved?.length > 0 ?
+                        <FlatList
+                            data={gamesSaved}
+                            renderItem={({ item }) => <CardGame game={item} />}
+                            keyExtractor={item => item.id}
+                            horizontal={true}
+                        />
+                        : loading ?
+                            <CardLoading />
+                            :
+                            <CardEmpty text='Nenhum jogo salvo' type='game' />
+                    }
+                </View>
 
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <H1>Séries ({seriesSaved?.length})</H1>
-            </View>
-            <View>
-                {seriesSaved?.length > 0 ?
-                    <FlatList
-                        data={seriesSaved}
-                        renderItem={({ item }) => <CardSerie serie={item} />}
-                        keyExtractor={item => item.id}
-                        horizontal={true}
-                    />
-                    : loading ?
-                        <CardLoading />
-                        :
-                        <CardEmpty text='Nenhuma série salva' type='serie' />
-                }
-            </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <H1>Séries ({seriesSaved?.length})</H1>
+                </View>
+                <View>
+                    {seriesSaved?.length > 0 ?
+                        <FlatList
+                            data={seriesSaved}
+                            renderItem={({ item }) => <CardSerie serie={item} />}
+                            keyExtractor={item => item.id}
+                            horizontal={true}
+                        />
+                        : loading ?
+                            <CardLoading />
+                            :
+                            <CardEmpty text='Nenhuma série salva' type='serie' />
+                    }
+                </View>
+            </ImageBackground>
         </View>
     )
 }
@@ -79,7 +82,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLORS.background,
-        padding: 15
     },
     txtinput: {
         backgroundColor: '#00334E',

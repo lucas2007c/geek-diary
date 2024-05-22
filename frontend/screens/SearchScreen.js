@@ -8,6 +8,7 @@ import useGameStore from '../stores/gameStore'
 import useSerieStore from '../stores/serieStore'
 import CardLoading from "../components/CardLoading"
 import H1 from "../components/ui/H1"
+import { ImageBackground } from "expo-image"
 
 const SearchScreen = () => {
     const games = useGameStore(state => state.games)
@@ -40,51 +41,53 @@ const SearchScreen = () => {
 
     return (
         <View style={styles.container}>
-            <TextInput
-                placeholder="Pesquisar"
-                placeholderTextColor={COLORS.secondary}
-                style={styles.txtinput}
-                maxLength={200}
-                value={txtSearch}
-                onChangeText={setTxtSearch}
-            />
+            <ImageBackground source={require('./serie/image.jpg')} style={{ padding: 20, flex: 1 }} contentFit='fill'>
+                <TextInput
+                    placeholder="Pesquisar"
+                    placeholderTextColor={COLORS.secondary}
+                    style={styles.txtinput}
+                    maxLength={200}
+                    value={txtSearch}
+                    onChangeText={setTxtSearch}
+                />
 
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 }}>
-                <H1>Jogos ({gamesFound?.length})</H1>
-            </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 }}>
+                    <H1>Jogos ({gamesFound?.length})</H1>
+                </View>
 
-            <View>
-                {gamesFound?.length > 0 ?
-                    <FlatList
-                        data={gamesFound}
-                        renderItem={({ item }) => <CardGame game={item} />}
-                        keyExtractor={item => item.id}
-                        horizontal={true}
-                    />
-                    : loading ?
-                        <CardLoading />
-                        :
-                        <CardEmpty text='Nenhum jogo Encontrado' type='game' />
-                }
-            </View>
+                <View>
+                    {gamesFound?.length > 0 ?
+                        <FlatList
+                            data={gamesFound}
+                            renderItem={({ item }) => <CardGame game={item} />}
+                            keyExtractor={item => item.id}
+                            horizontal={true}
+                        />
+                        : loading ?
+                            <CardLoading />
+                            :
+                            <CardEmpty text='Nenhum jogo Encontrado' type='game' />
+                    }
+                </View>
 
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <H1>Séries ({seriesFound?.length})</H1>
-            </View>
-            <View>
-                {seriesFound?.length > 0 ?
-                    <FlatList
-                        data={seriesFound}
-                        renderItem={({ item }) => <CardSerie serie={item} />}
-                        keyExtractor={item => item.id}
-                        horizontal={true}
-                    />
-                    : loading ?
-                        <CardLoading />
-                        :
-                        <CardEmpty text='Nenhuma série Encontrada' type='serie' />
-                }
-            </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <H1>Séries ({seriesFound?.length})</H1>
+                </View>
+                <View>
+                    {seriesFound?.length > 0 ?
+                        <FlatList
+                            data={seriesFound}
+                            renderItem={({ item }) => <CardSerie serie={item} />}
+                            keyExtractor={item => item.id}
+                            horizontal={true}
+                        />
+                        : loading ?
+                            <CardLoading />
+                            :
+                            <CardEmpty text='Nenhuma série Encontrada' type='serie' />
+                    }
+                </View>
+            </ImageBackground>
         </View>
     )
 }
@@ -93,7 +96,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLORS.background,
-        padding: 15
     },
     txtinput: {
         backgroundColor: '#00334E',
