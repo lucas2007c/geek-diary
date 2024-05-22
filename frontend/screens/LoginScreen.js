@@ -42,8 +42,14 @@ const Login = () => {
                 }
             } else {
                 const data = await response.json()
-                console.log(data)
-                alert(data?.error ? data.error : "Erro ao logar!")
+                let fieldsErros = ''
+                if (data?.fields) {
+                    for (let field in data.fields) {
+                        fieldsErros += data.fields[field] + '\n'
+                    }
+                }
+
+                alert(`${data.msg} \n` + fieldsErros);
             }
         } catch (error) {
             console.log(error)
