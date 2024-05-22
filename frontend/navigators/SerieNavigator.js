@@ -7,7 +7,7 @@ import SerieRegister from '../screens/serie/SerieRegister';
 import SeriesScreen from '../screens/serie/SeriesScreen';
 import SerieEdit from '../screens/serie/SerieEdit';
 
-const GameNavigator = () => {
+const SerieNavigator = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen name="serieslist" component={SeriesScreen} options={{
@@ -47,4 +47,4 @@ const styles = StyleSheet.create({
         color: COLORS.font
     }
 })
-export default GameNavigator
+export default SerieNavigator
