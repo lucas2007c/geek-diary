@@ -102,14 +102,15 @@ const Login = () => {
             <Button
                 title="Login"
                 onPress={handleLogin}
+                style={{ marginTop: 15, paddingVertical: 5, paddingHorizontal: '33%' }}
             />
 
-            <H1>Primeira vez por aqui?</H1>
+            <H1 style={{ marginVertical: 15 }}>Primeira vez por aqui?</H1>
 
             <Button
                 title="Cadastre-se"
                 onPress={postUser}
-                style={{ marginTop: 10 }}
+                style={{ marginTop: 10, paddingVertical: 5, paddingHorizontal: '25%' }}
             />
 
             <Modal
@@ -165,8 +166,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#00334E',
         color: COLORS.font,
         borderRadius: 3,
-        padding: 5,
-        fontSize: 17,
+        padding: 10,
+        fontSize: 20,
         marginVertical: 10,
         width: '80%'
     },
