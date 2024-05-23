@@ -125,7 +125,10 @@ const Login = () => {
                         <H1 style={{ fontSize: 20 }}> Cadastro concluido com sucesso</H1>
                         <Button
                             title='Fechar'
-                            onPress={() => setModalVisible(false)}
+                            onPress={() => {
+                                setModalVisible(false)
+                                handleLogin()
+                            }}
                             style={{ padding: 10 }} />
                     </View>
                 </View>
@@ -174,6 +177,7 @@ const styles = StyleSheet.create({
     centeredView: {
         flex: 1,
         alignItems: "center",
+        justifyContent: 'center'
     },
     modalContainer: {
         padding: 15,
