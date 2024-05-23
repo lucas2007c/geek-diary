@@ -1,6 +1,6 @@
-import { View, TextInput, StyleSheet, ScrollView, Modal, Text, Pressable } from "react-native"
+import { View, TextInput, StyleSheet, ScrollView, Text, Pressable } from "react-native"
 import { COLORS } from "../../constants/constants"
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import useSerieStore from '../../stores/serieStore.js'
 import { useState } from "react";
 import H1 from '../../components/ui/H1.js'
@@ -16,7 +16,6 @@ const SerieRegister = () => {
     const addSerie = useSerieStore(state => state.addSerie)
     const userLoggedID = useUserLoggedStore(state => state.id)
     const navigation = useNavigation()
-    const route = useRoute()
 
     const [txtName, setTxtName] = useState('')
     const [txtUrl, setTxtUrl] = useState('')
@@ -203,18 +202,6 @@ const styles = StyleSheet.create({
     gameImage: {
         width: '100%',
         height: 200
-    },
-    centeredView: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    modalContainer: {
-        padding: 15,
-        borderRadius: 15,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: COLORS.secondary,
     },
     span: {
         fontSize: 14,
