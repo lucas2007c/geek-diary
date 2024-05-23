@@ -216,7 +216,7 @@ const SerieEdit = () => {
                 }}>
                 <View style={styles.centeredView}>
                     <View style={styles.modalContainer}>
-                        <H1 style={{ fontSize: 20 }}> Deseja excluir esta série?</H1>
+                        <H1 style={{ fontSize: 20 }}> Deseja excluir {serie.name}?</H1>
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
                             <Button
                                 title='Excluir'
@@ -274,7 +274,9 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.secondary,
+        backgroundColor: COLORS.background,
+        borderColor: COLORS.primary,
+        borderWidth: 1
     }
 })
 
