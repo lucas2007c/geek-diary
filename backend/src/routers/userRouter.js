@@ -5,8 +5,10 @@ import listAll from '../controllers/user/listAll.js';
 import create from '../controllers/user/create.js';
 import update from '../controllers/user/update.js';
 import remove from '../controllers/user/remove.js';
+import auth from '../middlewares/auth.js'
 
 const router = express.Router();
+router.use('/', auth)
 
 router.get('/', listAll);
 router.get('/:id', getById);
