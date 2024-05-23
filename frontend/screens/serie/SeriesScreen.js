@@ -16,13 +16,17 @@ import { API_URL } from '../../constants/constants.js'
 
 const SerieScreen = () => {
     const { series, setSeries } = useSerieStore(state => state)
-    const userLoggedID = useUserLoggedStore(state => state.id)
+    const userLogged = useUserLoggedStore(state => state)
     const [loading, setLoading] = useState(true)
     const navigation = useNavigation()
 
     const getSerie = async () => {
         try {
-            const response = await axios.get(`${API_URL}/serie/${userLoggedID}`)
+            const response = await axios.get(`${API_URL}/serie/${userLogged.id}`, {
+                headers: {
+                    Authorization: `Bearer ${userLogged.token}`
+                }
+            })
             const data = response.data.series
             setSeries(data);
             setLoading(false)
