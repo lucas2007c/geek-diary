@@ -8,7 +8,7 @@ import remove from '../controllers/user/remove.js';
 import auth from '../middlewares/auth.js'
 
 const router = express.Router();
-router.use('/', auth)
+router.use(auth)
 
 router.get('/', listAll);
 router.get('/:id', getById);

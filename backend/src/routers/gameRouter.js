@@ -8,7 +8,7 @@ import remove from '../controllers/game/remove.js';
 import auth from '../middlewares/auth.js'
 
 const router = express.Router();
-router.use('/', auth)
+router.use(auth)
 
 router.get('/:userID', listAll);
 router.get('/:id/:userID', getById);
