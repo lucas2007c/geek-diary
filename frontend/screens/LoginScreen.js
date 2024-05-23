@@ -14,6 +14,8 @@ const Login = () => {
     const [txtEmail, setTxtEmail] = useState('')
     const [txtPass, setTxtPass] = useState('')
     const [modalVisible, setModalVisible] = useState(false)
+    const [modalErrorVisible, setModalErrorVisible] = useState(false)
+    let [errors, setErrors] = useState('')
     const navigation = useNavigation()
     const login = useUserLoggedStore(state => state.login)
 
@@ -42,14 +44,14 @@ const Login = () => {
                 }
             } else {
                 const data = await response.json()
-                let fieldsErros = ''
                 if (data?.fields) {
                     for (let field in data.fields) {
-                        fieldsErros += data.fields[field] + '\n'
+                        setErrors(errors += data.fields[field] + '\n')
                     }
+                } else {
+                    setErrors(data.msg)
                 }
-
-                alert(`${data.msg} \n` + fieldsErros);
+                setModalErrorVisible(true)
             }
         } catch (error) {
             console.log(error)
@@ -66,14 +68,15 @@ const Login = () => {
             await axios.post(`${API_URL}/user`, newUser)
             setModalVisible(true)
         } catch (error) {
-            let fieldsErros = ''
-            if (error?.response?.data?.fields) {
-                for (let field in error.response.data.fields) {
-                    fieldsErros += error.response.data.fields[field] + '\n'
+            const data = error.response.data
+            if (data?.fields) {
+                for (let field in data.fields) {
+                    setErrors(errors += data.fields[field] + '\n')
                 }
+            } else {
+                setErrors(data.msg)
             }
-
-            alert(`${error.response.data.msg} \n` + fieldsErros);
+            setModalErrorVisible(true)
         }
     }
     return (
@@ -126,6 +129,27 @@ const Login = () => {
                     </View>
                 </View>
             </Modal >
+
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalErrorVisible}
+                onRequestClose={() => {
+                    setModalErrorVisible(false)
+                }}>
+                <View style={styles.centeredView}>
+                    <View style={styles.modalContainer}>
+                        <H1 style={{ fontSize: 20 }}>{errors}</H1>
+                        <Button
+                            title='Fechar'
+                            onPress={() => {
+                                setModalErrorVisible(false)
+                                setErrors('')
+                            }}
+                            style={{ padding: 10 }} />
+                    </View>
+                </View>
+            </Modal >
         </View >
     )
 }
@@ -143,19 +167,21 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         padding: 5,
         fontSize: 17,
-        marginVertical: 10
+        marginVertical: 10,
+        width: '80%'
     },
     centeredView: {
         flex: 1,
         alignItems: "center",
     },
     modalContainer: {
-        marginTop: 30,
         padding: 15,
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.secondary,
+        backgroundColor: COLORS.background,
+        borderColor: COLORS.primary,
+        borderWidth: 1
     }
 })
 
