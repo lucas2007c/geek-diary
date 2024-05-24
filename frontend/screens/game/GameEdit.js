@@ -11,12 +11,13 @@ import RadioButtonGroup, { RadioButtonItem } from "expo-radio-button";
 import useUserLoggedStore from "../../stores/userLoggedStore.js";
 import { FontAwesome } from '@expo/vector-icons'
 import { API_URL } from '../../constants/constants.js'
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const GameEdit = () => {
     const updateGame = useGameStore(state => state.updateGame)
     const removeGame = useGameStore(state => state.removeGame)
-    const userLoggedID = useUserLoggedStore(state => state.id)
+    const userLogged = useUserLoggedStore(state => state)
     const navigation = useNavigation()
     const route = useRoute()
     const game = route.params
@@ -42,14 +43,29 @@ const GameEdit = () => {
             platinum: txtPlatinum ? txtPlatinum : null,
             status: txtStatus ? txtStatus : null,
             saved: Saved,
-            users_id: userLoggedID,
+            users_id: userLogged.id,
         }
 
         try {
-            const response = await axios.put(`${API_URL}/game/${game.id}/${game.users_id}`, newGame)
+            const response = await axios.put(`${API_URL}/game/${game.id}/${game.users_id}`, newGame, {
+                headers: {
+                    Authorization: `Bearer ${userLogged.token}`
+                }
+            })
             updateGame(game.id, game.users_id, response.data.game)
             navigation.navigate('jogoslist')
         } catch (error) {
+            if (error.response.status == 401) {
+                try {
+                    alert('Sessão expirada, Faça o login novamente')
+                    setTimeout(() => {
+                        handleLogout()
+                    }, 1000);
+                } catch (error) {
+                    console.log(error)
+                    alert('Erro ao fazer logout!')
+                }
+            }
             let fieldsErros = ''
             if (error?.response?.data?.fields) {
                 for (let field in error.response.data.fields) {
@@ -63,10 +79,25 @@ const GameEdit = () => {
 
     const deleteGame = async () => {
         try {
-            const response = await axios.delete(`${API_URL}/game/${game.id}/${game.users_id}`)
+            const response = await axios.delete(`${API_URL}/game/${game.id}/${game.users_id}`, {
+                headers: {
+                    Authorization: `Bearer ${userLogged.token}`
+                }
+            })
             removeGame(game.id, game.users_id)
             navigation.navigate('jogoslist')
         } catch (error) {
+            if (error.response.status == 401) {
+                try {
+                    alert('Sessão expirada, Faça o login novamente')
+                    setTimeout(() => {
+                        handleLogout()
+                    }, 1000);
+                } catch (error) {
+                    console.log(error)
+                    alert('Erro ao fazer logout!')
+                }
+            }
             let fieldsErros = ''
             if (error?.response?.data?.fields) {
                 for (let field in error.response.data.fields) {
@@ -90,10 +121,37 @@ const GameEdit = () => {
     const handleSaved = async () => {
         setSaved(!Saved)
         try {
-            const response = await axios.put(`${API_URL}/game/${game.id}/${game.users_id}`, { saved: !Saved })
+            const response = await axios.put(`${API_URL}/game/${game.id}/${game.users_id}`, { saved: !Saved }, {
+                headers: {
+                    Authorization: `Bearer ${userLogged.token}`
+                }
+            })
             updateGame(game.id, game.users_id, response.data.game)
         } catch (error) {
+            if (error.response.status == 401) {
+                try {
+                    alert('Sessão expirada, Faça o login novamente')
+                    setTimeout(() => {
+                        handleLogout()
+                    }, 1000);
+                } catch (error) {
+                    console.log(error)
+                    alert('Erro ao fazer logout!')
+                }
+            }
             alert('Erro ao salvar jogo')
+        }
+    }
+
+    const handleLogout = async () => {
+        try {
+            await AsyncStorage.removeItem('userLogged')
+            userLogged.logout()
+            navigation.pop()
+            navigation.navigate('login')
+        } catch (error) {
+            console.log(error)
+            alert('Erro ao fazer logout!')
         }
     }
 

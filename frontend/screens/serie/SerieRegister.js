@@ -10,11 +10,12 @@ import RadioButtonGroup, { RadioButtonItem } from "expo-radio-button";
 import useUserLoggedStore from "../../stores/userLoggedStore.js";
 import { FontAwesome } from "@expo/vector-icons"
 import { API_URL } from '../../constants/constants.js'
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const SerieRegister = () => {
     const addSerie = useSerieStore(state => state.addSerie)
-    const userLoggedID = useUserLoggedStore(state => state.id)
+    const userLogged = useUserLoggedStore(state => state)
     const navigation = useNavigation()
 
     const [txtName, setTxtName] = useState('')
@@ -36,14 +37,29 @@ const SerieRegister = () => {
             last_ep: txtLastEp,
             status: txtStatus ? txtStatus : null,
             saved: Saved,
-            users_id: userLoggedID,
+            users_id: userLogged.id,
         }
 
         try {
-            const response = await axios.post(`${API_URL}/serie`, newSerie)
+            const response = await axios.post(`${API_URL}/serie`, newSerie, {
+                headers: {
+                    Authorization: `Bearer ${userLogged.token}`
+                }
+            })
             addSerie(response.data.serie)
             navigation.navigate('serieslist')
         } catch (error) {
+            if (error.response.status == 401) {
+                try {
+                    alert('Sessão expirada, Faça o login novamente')
+                    setTimeout(() => {
+                        handleLogout()
+                    }, 1000);
+                } catch (error) {
+                    console.log(error)
+                    alert('Erro ao fazer logout!')
+                }
+            }
             let fieldsErros = ''
             if (error?.response?.data?.fields) {
                 for (let field in error.response.data.fields) {
@@ -64,6 +80,18 @@ const SerieRegister = () => {
 
     const handleSaved = () => {
         setSaved(Saved ? false : true)
+    }
+
+    const handleLogout = async () => {
+        try {
+            await AsyncStorage.removeItem('userLogged')
+            userLogged.logout()
+            navigation.pop()
+            navigation.navigate('login')
+        } catch (error) {
+            console.log(error)
+            alert('Erro ao fazer logout!')
+        }
     }
 
     return (

@@ -11,12 +11,13 @@ import RadioButtonGroup, { RadioButtonItem } from "expo-radio-button";
 import useUserLoggedStore from "../../stores/userLoggedStore.js";
 import { FontAwesome } from '@expo/vector-icons'
 import { API_URL } from '../../constants/constants.js'
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const SerieEdit = () => {
     const updateSerie = useSerieStore(state => state.updateSerie)
     const removeSerie = useSerieStore(state => state.removeSerie)
-    const userLoggedID = useUserLoggedStore(state => state.id)
+    const userLogged = useUserLoggedStore(state => state)
     const navigation = useNavigation()
     const route = useRoute()
     const serie = route.params
@@ -41,14 +42,29 @@ const SerieEdit = () => {
             last_ep: txtLastEp,
             status: txtStatus ? txtStatus : null,
             saved: Saved,
-            users_id: userLoggedID,
+            users_id: userLogged.id,
         }
 
         try {
-            const response = await axios.put(`${API_URL}/serie/${serie.id}/${serie.users_id}`, newSerie)
+            const response = await axios.put(`${API_URL}/serie/${serie.id}/${serie.users_id}`, newSerie, {
+                headers: {
+                    Authorization: `Bearer ${userLogged.token}`
+                }
+            })
             updateSerie(serie.id, serie.users_id, response.data.serie)
             navigation.navigate('serieslist')
         } catch (error) {
+            if (error.response.status == 401) {
+                try {
+                    alert('Sessão expirada, Faça o login novamente')
+                    setTimeout(() => {
+                        handleLogout()
+                    }, 1000);
+                } catch (error) {
+                    console.log(error)
+                    alert('Erro ao fazer logout!')
+                }
+            }
             let fieldsErros = ''
             if (error?.response?.data?.fields) {
                 for (let field in error.response.data.fields) {
@@ -62,10 +78,25 @@ const SerieEdit = () => {
 
     const deleteSerie = async () => {
         try {
-            const response = await axios.delete(`${API_URL}/serie/${serie.id}/${serie.users_id}`)
+            const response = await axios.delete(`${API_URL}/serie/${serie.id}/${serie.users_id}`, {
+                headers: {
+                    Authorization: `Bearer ${userLogged.token}`
+                }
+            })
             removeSerie(serie.id, serie.users_id)
             navigation.navigate('serieslist')
         } catch (error) {
+            if (error.response.status == 401) {
+                try {
+                    alert('Sessão expirada, Faça o login novamente')
+                    setTimeout(() => {
+                        handleLogout()
+                    }, 1000);
+                } catch (error) {
+                    console.log(error)
+                    alert('Erro ao fazer logout!')
+                }
+            }
             let fieldsErros = ''
             if (error?.response?.data?.fields) {
                 for (let field in error.response.data.fields) {
@@ -89,10 +120,37 @@ const SerieEdit = () => {
     const handleSaved = async () => {
         setSaved(!Saved)
         try {
-            const response = await axios.put(`${API_URL}/serie/${serie.id}/${serie.users_id}`, { saved: !Saved })
+            const response = await axios.put(`${API_URL}/serie/${serie.id}/${serie.users_id}`, { saved: !Saved }, {
+                headers: {
+                    Authorization: `Bearer ${userLogged.token}`
+                }
+            })
             updateSerie(serie.id, serie.users_id, response.data.serie)
         } catch (error) {
+            if (error.response.status == 401) {
+                try {
+                    alert('Sessão expirada, Faça o login novamente')
+                    setTimeout(() => {
+                        handleLogout()
+                    }, 1000);
+                } catch (error) {
+                    console.log(error)
+                    alert('Erro ao fazer logout!')
+                }
+            }
             alert('Erro ao salvar série')
+        }
+    }
+
+    const handleLogout = async () => {
+        try {
+            await AsyncStorage.removeItem('userLogged')
+            userLogged.logout()
+            navigation.pop()
+            navigation.navigate('login')
+        } catch (error) {
+            console.log(error)
+            alert('Erro ao fazer logout!')
         }
     }
 
