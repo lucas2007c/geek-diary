@@ -14,12 +14,6 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: [
-        'http://localhost:3000',
-        'https://vzdrptm-anonymous-8081.exp.direct',
-        'http://localhost:8081',
-        'exp://192.168.0.9:8081',
-        'https://projeto-react-native.onrender.com'],
     methods: ['GET', 'PUT', 'POST', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }))
