@@ -7,12 +7,6 @@
 ```bash
  npm i
 ```
-### Caso vá testar no computador:
-```bash
- npm start
-```
-e então aperte W para abrir no navegador
-### Caso vá testar no celular:
 ```bash
  npm run start:tunnel
 ```
