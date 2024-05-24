@@ -87,7 +87,7 @@ const SerieRegister = () => {
             await AsyncStorage.removeItem('userLogged')
             userLogged.logout()
             navigation.pop()
-            navigation.navigate('login')
+            navigation.navigate('splash')
         } catch (error) {
             console.log(error)
             alert('Erro ao fazer logout!')
