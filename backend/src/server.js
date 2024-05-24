@@ -26,6 +26,10 @@ app.use(cors({
 app.use(logger)
 app.use(prismaDateFormat)
 
+app.get('/', (req, res) => {
+    res.json({ ready: true, msg: 'Servidor pronto' })
+})
+
 //routers
 app.use('/auth', authRouter)
 app.use('/user', userRouter)
